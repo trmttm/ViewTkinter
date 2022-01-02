@@ -161,9 +161,9 @@ def export_window(frame_id, **kwargs) -> list:
         f(fr_scenario, 'fr_scenario_tree', 'frame', 1, 1, 0, 0, 'nswe', **intf.frame_options(*fr_0_0)),
         f(fr_scenario, tree_scenario, 'treeview', 1, 1, 0, 0, 'nsew', ),
         f(fr_scenario, 'fr_scenario_tree_btn', 'frame', 1, 1, 1, 1, 'swe', **intf.frame_options(*fr_0_0)),
-        f('fr_scenario_tree_btn', btn_fr_scenario_up, 'button', 0, 0, 0, 0, 'nswe', **{'text': '⬆️', 'width': 2}),
-        f('fr_scenario_tree_btn', btn_fr_scenario_down, 'button', 1, 1, 0, 0, 'nswe', **{'text': '⬇️', 'width': 2}),
-        f('fr_scenario_tree_btn', btn_fr_scenario_delete, 'button', 2, 2, 0, 0, 'nswe', **{'text': '❌', 'width': 2}),
+        f('fr_scenario_tree_btn', btn_fr_scenario_up, 'button', 0, 0, 0, 0, 'nswe', **{'text': '↑', 'width': 2}),
+        f('fr_scenario_tree_btn', btn_fr_scenario_down, 'button', 1, 1, 0, 0, 'nswe', **{'text': '↓', 'width': 2}),
+        f('fr_scenario_tree_btn', btn_fr_scenario_delete, 'button', 2, 2, 0, 0, 'nswe', **{'text': 'Del', 'width': 2}),
 
         # Graphs
         f(fr_ids[3], fr_graph, 'frame', 0, 0, 0, 0, 'nsew', **intf.frame_options(*fr_10_0)),
@@ -175,9 +175,9 @@ def export_window(frame_id, **kwargs) -> list:
         f(fr_graph, 'fr_graph_tree', 'frame', 1, 1, 0, 0, 'nswe', **intf.frame_options(*fr_0_0)),
         f(fr_graph, tree_graph, 'treeview', 1, 1, 0, 0, 'nsew', ),
         f(fr_graph, 'fr_graph_tree_btn', 'frame', 1, 1, 1, 1, 'swe', **intf.frame_options(*fr_0_0)),
-        f('fr_graph_tree_btn', btn_fr_graph_up, 'button', 0, 0, 0, 0, 'nswe', **{'text': '⬆️', 'width': 2}),
-        f('fr_graph_tree_btn', btn_fr_graph_down, 'button', 1, 1, 0, 0, 'nswe', **{'text': '⬇️', 'width': 2}),
-        f('fr_graph_tree_btn', btn_fr_graph_delete, 'button', 2, 2, 0, 0, 'nswe', **{'text': '❌', 'width': 2}),
+        f('fr_graph_tree_btn', btn_fr_graph_up, 'button', 0, 0, 0, 0, 'nswe', **{'text': '↑', 'width': 2}),
+        f('fr_graph_tree_btn', btn_fr_graph_down, 'button', 1, 1, 0, 0, 'nswe', **{'text': '↓', 'width': 2}),
+        f('fr_graph_tree_btn', btn_fr_graph_delete, 'button', 2, 2, 0, 0, 'nswe', **{'text': 'Del', 'width': 2}),
 
         # DashBoard
         f(fr_ids[4], fr_dash_board, 'frame', 0, 0, 0, 0, 'nsew', **intf.frame_options(*fr_10_0)),
@@ -189,9 +189,9 @@ def export_window(frame_id, **kwargs) -> list:
         f(fr_dash_board, fr_dash_board_tree, 'frame', 1, 1, 0, 0, 'nswe', **intf.frame_options(*fr_0_0)),
         f(fr_dash_board_tree, tree_dash_board, 'treeview', 1, 1, 0, 0, 'nsew', ),
         f(fr_dash_board_tree, 'fr_db_tree_btn', 'frame', 1, 1, 1, 1, 'swe', **intf.frame_options(*fr_0_0)),
-        f('fr_db_tree_btn', btn_fr_dash_board_up, 'button', 0, 0, 0, 0, 'nswe', **{'text': '⬆️', 'width': 2}),
-        f('fr_db_tree_btn', btn_fr_dash_board_down, 'button', 1, 1, 0, 0, 'nswe', **{'text': '⬇️', 'width': 2}),
-        f('fr_db_tree_btn', btn_fr_dash_board_delete, 'button', 2, 2, 0, 0, 'nswe', **{'text': '❌', 'width': 2}),
+        f('fr_db_tree_btn', btn_fr_dash_board_up, 'button', 0, 0, 0, 0, 'nswe', **{'text': '↑', 'width': 2}),
+        f('fr_db_tree_btn', btn_fr_dash_board_down, 'button', 1, 1, 0, 0, 'nswe', **{'text': '↓', 'width': 2}),
+        f('fr_db_tree_btn', btn_fr_dash_board_delete, 'button', 2, 2, 0, 0, 'nswe', **{'text': 'Del', 'width': 2}),
 
         # Bottom Buttons
         f(frame_id, fr_general_buttons, 'frame', 1, 1, 0, 0, 'nsew', **intf.frame_options(*fr_0_0)),
