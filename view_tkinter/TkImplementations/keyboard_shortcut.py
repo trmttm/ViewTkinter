@@ -1,5 +1,5 @@
 import os_identifier
-import struct
+
 shift = 'shift'
 function = 'function'
 control = 'control'
@@ -26,8 +26,7 @@ if os_identifier.is_mac:
     tk_n_option = 16
     tk_n_command = 8
 else:
-    windows_is_64_bit = struct.calcsize("P") * 8 == 64
-    tk_n_none = 8 if windows_is_64_bit else 0
+    tk_n_none = 8
     tk_none_special = 262144
     tk_n_shift = 1
     tk_n_function = 64
