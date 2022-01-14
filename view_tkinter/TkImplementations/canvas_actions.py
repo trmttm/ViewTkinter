@@ -110,17 +110,11 @@ def update_canvas_scroll_region(canvas: tk.Canvas):
 
 def add_text_box(canvas: tk.Canvas, view_model: list):
     for text_box_data in view_model:
+        add_rectangle(canvas, text_box_data)
+
         w, h = text_box_data['width'], text_box_data['height']
         x1, y1 = text_box_data['x'], text_box_data['y']
         x2, y2 = x1 + w, y1 + h
-        rectangle_options = {
-            'outline': text_box_data['border_color'],
-            'width': text_box_data['border_width'],
-            'fill': text_box_data['fill'],
-            'tags': text_box_data['tags'],
-        }
-        canvas.create_rectangle(x1, y1, x2, y2, **rectangle_options)
-
         text_align = text_box_data.get('text_align', '')
         text_options = {
             'text': text_box_data['text'],
@@ -146,6 +140,19 @@ def add_text_box(canvas: tk.Canvas, view_model: list):
             anchor = text_options.get('anchor', '') + 'e'
             text_options.update({'anchor': anchor})
         canvas.create_text(text_x, text_y, **text_options)
+
+
+def add_rectangle(canvas, view_model):
+    w, h = view_model['width'], view_model['height']
+    x1, y1 = view_model['x'], view_model['y']
+    x2, y2 = x1 + w, y1 + h
+    rectangle_options = {
+        'outline': view_model['border_color'],
+        'width': view_model['border_width'],
+        'fill': view_model['fill'],
+        'tags': view_model['tags'],
+    }
+    canvas.create_rectangle(x1, y1, x2, y2, **rectangle_options)
 
 
 def remove_text_box(canvas: tk.Canvas, view_model: list):

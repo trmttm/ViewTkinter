@@ -113,6 +113,7 @@ widget_canvas = canvas_actions.widget_canvas
 add_canvas = canvas_actions.add_canvas
 bind_canvas = canvas_actions.bind_canvas
 add_text_box = canvas_actions.add_text_box
+add_rectangle = canvas_actions.add_rectangle
 remove_text_box = canvas_actions.remove_text_box
 connect_shapes = canvas_actions.connect_shapes
 move_shapes = canvas_actions.move_shapes
