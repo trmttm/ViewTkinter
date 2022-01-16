@@ -120,6 +120,7 @@ move_shapes = canvas_actions.move_shapes
 highlight_shapes = canvas_actions.highlight_shapes
 draw_rectangle = canvas_actions.draw_rectangle
 set_border_color = canvas_actions.set_border_color
+set_border_width = canvas_actions.set_border_width
 draw_line = canvas_actions.draw_line
 add_line = canvas_actions.add_line
 clear_canvas = canvas_actions.clear_canvas

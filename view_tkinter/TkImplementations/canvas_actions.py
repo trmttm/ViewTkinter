@@ -226,6 +226,11 @@ def set_border_color(canvas: tk.Canvas, view_model: dict):
         canvas.itemconfigure(tag, outline=color)
 
 
+def set_border_width(canvas: tk.Canvas, view_model: dict):
+    for tag, width in view_model.items():
+        canvas.itemconfigure(tag, width=width)
+
+
 def add_line(canvas: tk.Canvas, view_model: dict):
     for line_data in view_model.values():
         coords1, coords2 = line_data['coordinate_from'], line_data['coordinate_to']
