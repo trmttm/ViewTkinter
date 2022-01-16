@@ -225,7 +225,12 @@ def draw_rectangle(canvas: tk.Canvas, view_model: dict):
 
 def set_border_color(canvas: tk.Canvas, view_model: dict):
     for tag, color in view_model.items():
-        canvas.itemconfigure(tag, outline=color)
+        canvas.itemconfigure(tag, fill=color)
+
+
+def set_text_color(canvas: tk.Canvas, view_model: dict):
+    for tag, color in view_model.items():
+        canvas.itemconfigure(tag, fill=color)
 
 
 def set_border_width(canvas: tk.Canvas, view_model: dict):

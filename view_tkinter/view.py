@@ -98,6 +98,10 @@ class View(ViewABC):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.set_border_color(canvas, view_model)
 
+    def set_text_color(self, view_model: dict):
+        canvas = self.get_widget(self._canvas_id)
+        TkImpl.set_text_color(canvas, view_model)
+
     def set_border_width(self, view_model: dict):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.set_border_width(canvas, view_model)
