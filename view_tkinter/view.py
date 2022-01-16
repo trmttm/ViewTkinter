@@ -118,6 +118,10 @@ class View(ViewABC):
     def set_line_width(self, view_model: dict):
         self.set_border_width(view_model)
 
+    def set_line_arrow(self, view_model: dict):
+        canvas = self.get_widget(self._canvas_id)
+        TkImpl.set_line_arrow(canvas, view_model)
+
     def set_fill_color(self, view_model: dict):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.set_fill_color(canvas, view_model)

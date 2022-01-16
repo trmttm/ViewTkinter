@@ -126,6 +126,7 @@ set_text_color = canvas_actions.set_text_color
 set_font_size = canvas_actions.set_font_size
 set_fill_color = canvas_actions.set_fill_color
 set_border_width = canvas_actions.set_border_width
+set_line_arrow = canvas_actions.set_line_arrow
 draw_line = canvas_actions.draw_line
 add_line = canvas_actions.add_line
 clear_canvas = canvas_actions.clear_canvas

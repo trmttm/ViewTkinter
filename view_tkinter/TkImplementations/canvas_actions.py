@@ -245,6 +245,12 @@ def set_font_size(canvas: tk.Canvas, view_model: dict):
 
 
 def set_border_width(canvas: tk.Canvas, view_model: dict):
+    for tag, arrow_data in view_model.items():
+        arrow = arrows[arrow_data]
+        canvas.itemconfigure(tag, width=arrow)
+
+
+def set_line_arrow(canvas: tk.Canvas, view_model: dict):
     for tag, width in view_model.items():
         canvas.itemconfigure(tag, width=width)
 
