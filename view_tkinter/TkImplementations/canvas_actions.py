@@ -24,7 +24,7 @@ arrows = {
     'first': tk.FIRST,
     'start': tk.FIRST,
     'from': tk.FIRST,
-    None: None,
+    None: tk.NONE,
 }
 
 
