@@ -221,6 +221,11 @@ def draw_rectangle(canvas: tk.Canvas, view_model: dict):
         canvas.create_rectangle(*coords1, *coords2, outline=color, width=width, tags=tags, fill=fill)
 
 
+def set_border_color(canvas: tk.Canvas, view_model: dict):
+    for tag, color in view_model.items():
+        canvas.itemconfigure(tag, outline=color)
+
+
 def add_line(canvas: tk.Canvas, view_model: dict):
     for line_data in view_model.values():
         coords1, coords2 = line_data['coordinate_from'], line_data['coordinate_to']

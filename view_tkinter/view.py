@@ -89,6 +89,10 @@ class View(ViewABC):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.draw_rectangle(canvas, view_model)
 
+    def set_border_color(self, view_model: dict):
+        canvas = self.get_widget(self._canvas_id)
+        TkImpl.set_border_color(canvas, view_model)
+
     def add_line(self, view_model: dict):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.add_line(canvas, view_model)
