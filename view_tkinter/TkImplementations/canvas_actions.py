@@ -252,7 +252,7 @@ def set_border_width(canvas: tk.Canvas, view_model: dict):
 def set_line_arrow(canvas: tk.Canvas, view_model: dict):
     for tag, arrow_data in view_model.items():
         arrow = arrows[arrow_data]
-        canvas.itemconfigure(tag, width=arrow)
+        canvas.itemconfigure(tag, arrow=arrow)
 
 
 def set_fill_color(canvas: tk.Canvas, view_model: dict):
