@@ -64,6 +64,11 @@ class View(ViewABC):
         TkImpl.add_rectangle(canvas, view_model)
         TkImpl.update_canvas_scroll_region(canvas)
 
+    def add_text(self, view_model: dict):
+        canvas = self.get_widget(self._canvas_id)
+        TkImpl.add_text(canvas, view_model)
+        TkImpl.update_canvas_scroll_region(canvas)
+
     def remove_text_box(self, view_model: list):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.remove_text_box(canvas, view_model)
