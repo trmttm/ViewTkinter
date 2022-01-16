@@ -157,7 +157,7 @@ def add_rectangle(canvas, view_model):
     canvas.create_rectangle(x1, y1, x2, y2, **rectangle_options)
 
 
-def remove_text_box(canvas: tk.Canvas, view_model: list):
+def remove_shapes(canvas: tk.Canvas, view_model: list):
     for tag_to_remove in view_model:
         canvas.delete(tag_to_remove)
 

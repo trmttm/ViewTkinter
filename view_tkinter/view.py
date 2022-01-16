@@ -71,7 +71,7 @@ class View(ViewABC):
 
     def remove_text_box(self, view_model: list):
         canvas = self.get_widget(self._canvas_id)
-        TkImpl.remove_text_box(canvas, view_model)
+        TkImpl.remove_shapes(canvas, view_model)
         TkImpl.update_canvas_scroll_region(canvas)
 
     def connect_shapes(self, view_model: list):
