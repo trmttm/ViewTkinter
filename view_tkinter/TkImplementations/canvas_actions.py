@@ -233,6 +233,12 @@ def set_text_color(canvas: tk.Canvas, view_model: dict):
         canvas.itemconfigure(tag, fill=color)
 
 
+def set_font_size(canvas: tk.Canvas, view_model: dict):
+    for tag, font_size in view_model.items():
+        font = ('', font_size)
+        canvas.itemconfigure(tag, font=font)
+
+
 def set_border_width(canvas: tk.Canvas, view_model: dict):
     for tag, width in view_model.items():
         canvas.itemconfigure(tag, width=width)
