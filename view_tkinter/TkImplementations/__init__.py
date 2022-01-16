@@ -118,6 +118,7 @@ add_text = canvas_actions.add_text
 remove_text_box = canvas_actions.remove_text_box
 connect_shapes = canvas_actions.connect_shapes
 move_shapes = canvas_actions.move_shapes
+set_coordinates = canvas_actions.set_coordinate
 highlight_shapes = canvas_actions.highlight_shapes
 draw_rectangle = canvas_actions.draw_rectangle
 set_border_color = canvas_actions.set_border_color

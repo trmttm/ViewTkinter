@@ -167,6 +167,11 @@ def move_shapes(canvas: tk.Canvas, view_model: dict):
         canvas.move(tag, delta_x, delta_y)
 
 
+def set_coordinate(canvas: tk.Canvas, view_model: dict):
+    for tag, new_coordinates in view_model.items():
+        canvas.coords(tag, new_coordinates)
+
+
 def connect_shapes(canvas: tk.Canvas, view_model: List[dict]):
     command_on_all_canvas_shapes(canvas, delete_line)
     for connection_data in view_model:

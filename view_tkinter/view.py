@@ -83,6 +83,11 @@ class View(ViewABC):
         TkImpl.move_shapes(canvas, view_model)
         TkImpl.update_canvas_scroll_region(canvas)
 
+    def move_lines(self, view_model: dict):
+        canvas = self.get_widget(self._canvas_id)
+        TkImpl.set_coordinates(canvas, view_model)
+        TkImpl.update_canvas_scroll_region(canvas)
+
     def add_widgets(self, view_model: Union[list, tuple]):
         TkImpl.add_widgets(self._widget_dictionary, view_model)
 
