@@ -119,11 +119,13 @@ def add_text(canvas, text_box_data):
     x1, y1 = text_box_data['x'], text_box_data['y']
     x2, y2 = x1 + w, y1 + h
     text_align = text_box_data.get('text_align', '')
+    font_size = text_box_data.get('font_size', 13)
+    font = (tkFont.Font(family="Arial", ), font_size) if font_size is not None else tkFont.Font(family="Arial", )
     text_options = {
         'text': text_box_data['text'],
         'tags': text_box_data['tags'],
         'angle': text_box_data['text_rotation'],
-        'font': tkFont.Font(family="Arial"),
+        'font': font,
     }
     text_x = (x1 + x2) / 2
     text_y = (y1 + y2) / 2
