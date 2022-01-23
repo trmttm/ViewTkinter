@@ -28,5 +28,26 @@ def create_configuration_setting(frame, **kwargs):
         wm(fr, 'live_calculation', 'label', 3, 3, 0, 0, 'nsew', **{'text': 'Live Calculation'}),
         wm(fr, check_btn_live_calc, 'check_button', 3, 3, 1, 1, 'w', **{'value': True}),
 
+        wm(fr, 'account_frame', 'frame', 4, 4, 0, 2, 'nsew', ),
+        wm('account_frame', 'account', 'label', 0, 0, 0, 0, 'nsew', **{'text': 'Account'}),
+        wm('account_frame', 'account_w', 'entry', 0, 0, 1, 1, 'nsew', **{'width': 3}),
+        wm('account_frame', 'account_h', 'entry', 0, 0, 2, 2, 'nsew', **{'width': 3}),
+        wm('account_frame', 'font_size', 'entry', 0, 0, 3, 3, 'nsew', **{'width': 3}),
+
+        wm('account_frame', 'operator', 'label', 1, 1, 0, 0, 'nsew', **{'text': 'Operator'}),
+        wm('account_frame', 'operator_w', 'entry', 1, 1, 1, 1, 'nsew', **{'width': 3}),
+        wm('account_frame', 'operator_h', 'entry', 1, 1, 2, 2, 'nsew', **{'width': 3}),
+        wm('account_frame', 'font_size', 'entry', 1, 1, 3, 3, 'nsew', **{'width': 3}),
+
+        wm('account_frame', 'constant', 'label', 2, 2, 0, 0, 'nsew', **{'text': 'Constant'}),
+        wm('account_frame', 'constant_w', 'entry', 2, 2, 1, 1, 'nsew', **{'width': 3}),
+        wm('account_frame', 'constant_h', 'entry', 2, 2, 2, 2, 'nsew', **{'width': 3}),
+        wm('account_frame', 'font_size', 'entry', 2, 2, 3, 3, 'nsew', **{'width': 3}),
+
+        wm('account_frame', 'bb', 'label', 3, 3, 0, 0, 'nsew', **{'text': 'BB'}),
+        wm('account_frame', 'bb_w', 'entry', 3, 3, 1, 1, 'nsew', **{'width': 3}),
+        wm('account_frame', 'bb_h', 'entry', 3, 3, 2, 2, 'nsew', **{'width': 3}),
+        wm('account_frame', 'font_size', 'entry', 3, 3, 3, 3, 'nsew', **{'width': 3}),
+
     ]
     return view_model
