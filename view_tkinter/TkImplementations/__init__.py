@@ -178,7 +178,10 @@ def instantiate_root(width: int = None, height: int = None) -> tk.Tk:
     if height is None:
         height = 600
     root = widgets['root']()
-    root.iconbitmap(default='applet.ico')
+    try:
+        root.iconbitmap(default='applet.ico')
+    except:
+        pass  # Mac will cause error
     root.grid_rowconfigure(0, weight=1)
     root.grid_columnconfigure(0, weight=1)
     root.geometry(f'{width}x{height}')
