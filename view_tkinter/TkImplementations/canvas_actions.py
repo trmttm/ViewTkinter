@@ -192,6 +192,7 @@ def delete_line(canvas: tk.Canvas, canvas_shape):
 
 
 def command_on_all_canvas_shapes(canvas: tk.Canvas, command: Callable):
+    # Expensive!
     for canvas_shape in canvas.find_all():
         command(canvas, canvas_shape)
 
@@ -294,7 +295,8 @@ def clear_all_lines(canvas: tk.Canvas):
 
 
 def clear_shapes_by_tag(canvas: tk.Canvas, tag: str):
-    command_on_all_canvas_shapes(canvas, lambda c, s: _clear_shapes_by_tag(c, s, tag))
+    canvas.delete(tag)
+    # command_on_all_canvas_shapes(canvas, lambda c, s: _clear_shapes_by_tag(c, s, tag))
 
 
 def _clear_shapes_by_tag(canvas: tk.Canvas, canvas_shape, tag):
