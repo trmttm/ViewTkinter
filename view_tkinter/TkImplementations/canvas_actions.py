@@ -296,12 +296,6 @@ def clear_all_lines(canvas: tk.Canvas):
 
 def clear_shapes_by_tag(canvas: tk.Canvas, tag: str):
     canvas.delete(tag)
-    # command_on_all_canvas_shapes(canvas, lambda c, s: _clear_shapes_by_tag(c, s, tag))
-
-
-def _clear_shapes_by_tag(canvas: tk.Canvas, canvas_shape, tag):
-    if tag in canvas.itemcget(canvas_shape, 'tags'):
-        canvas.delete(canvas_shape)
 
 
 def get_tag_from_canvas_id(canvas: tk.Canvas, canvas_id):
