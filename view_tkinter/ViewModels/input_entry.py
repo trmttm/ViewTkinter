@@ -15,7 +15,8 @@ def input_entry(frame_ie='frame_input_entry',
                 cmb_box='combo_box',
                 btn_r='button_ie_right',
                 btn_l='button_ie_left',
-                pad_xy=(0, 0)) -> list:
+                pad_xy=(0, 0),
+                cb_values=()) -> list:
     f = intf.widget_model
 
     r_2 = ((2,), (1,))
@@ -24,6 +25,7 @@ def input_entry(frame_ie='frame_input_entry',
     c_1 = ((1,), (1,))
     c_2 = ((2,), (1,))
     fr = 'frame_local'
+    fr_name_uom = 'frame_ie_name_uom'
     fr_control = 'frame_ie_control'
     fr_canvas = 'frame_two_canvases'
     fr_btn = 'frame_ie_buttons'
@@ -32,12 +34,15 @@ def input_entry(frame_ie='frame_input_entry',
     label_digit = 'label_ie_digit'
     view_model = [
         f(frame_ie, fr, 'frame', 0, 0, 0, 0, 'nsew', pad_xy, **intf.frame_options(r_2, c_0)),
-        f(fr, label_title, 'label', 0, 0, 0, 0, 'nsew', pad_xy, **{'text': 'Input Entry: Revenue'}),
+        f(fr, fr_name_uom, 'frame', 0, 0, 0, 0, 'nsew', pad_xy, **intf.frame_options(r_0, c_0)),
+        f(fr_name_uom, label_title, 'label', 0, 0, 0, 0, 'nsew', pad_xy, **{'text': 'Input Entry: Revenue'}),
+        f(fr_name_uom, 'label_uom', 'label', 0, 0, 1, 1, 'nsew', pad_xy, **{'text': 'Unit of Measure'}),
+        f(fr_name_uom, 'entry_uom', 'entry', 0, 0, 2, 2, 'nsew', pad_xy, ),
 
         f(fr, fr_control, 'frame', 1, 1, 0, 0, 'nsew', pad_xy, **intf.frame_options(r_2, c_2)),
         f(fr_control, check_btn, 'check_button', 0, 0, 0, 0, 'nsew', pad_xy, text='by slider'),
         f(fr_control, btn_l, 'button', 0, 0, 1, 1, 'nsew', pad_xy, **{'text': '◀', 'width': 0}),
-        f(fr_control, cmb_box, 'combo_box', 0, 0, 2, 2, 'nsew', pad_xy, text='by slider'),
+        f(fr_control, cmb_box, 'combo_box', 0, 0, 2, 2, 'nsew', pad_xy, text='by slider', values=cb_values),
         f(fr_control, btn_r, 'button', 0, 0, 3, 3, 'nsew', pad_xy, **{'text': '▶', 'width': 0}),
         f(fr_control, label_min, 'label', 0, 0, 4, 4, 'nsew', pad_xy, text='min'),
         f(fr_control, entry_min, 'entry', 0, 0, 5, 5, 'nsew', pad_xy, width=5),

@@ -70,6 +70,7 @@ class ComboBoxWithText(ttk.Combobox):
 
     def set_value(self, value):
         self._var.set(value)
+        self.set(value)
 
     def bind_callback_upon_selection(self, callback):
         self.bind('<<ComboboxSelected>>', lambda _: callback(self.get_value()))
