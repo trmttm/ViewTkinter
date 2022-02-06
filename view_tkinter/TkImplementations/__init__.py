@@ -62,14 +62,12 @@ class CheckbuttonWithBool(ttk.Checkbutton):
 
 class ComboBoxWithText(ttk.Combobox):
     def __init__(self, parent, *_, **kwargs):
-        self._var = widgets[STRING_VAR](value='')
-        super(ComboBoxWithText, self).__init__(parent, textvariable=self._var, **kwargs)
+        super(ComboBoxWithText, self).__init__(parent,  **kwargs)
 
     def get_value(self) -> str:
-        return self._var.get()
+        return self.get()
 
     def set_value(self, value):
-        self._var.set(value)
         self.set(value)
 
     def bind_callback_upon_selection(self, callback):
