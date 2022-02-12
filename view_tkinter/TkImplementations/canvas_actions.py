@@ -115,35 +115,37 @@ def add_text_box(canvas: tk.Canvas, view_model: list):
 
 
 def add_text(canvas, text_box_data):
-    w, h = text_box_data['width'], text_box_data['height']
-    x1, y1 = text_box_data['x'], text_box_data['y']
-    x2, y2 = x1 + w, y1 + h
-    text_align = text_box_data.get('text_align', '')
-    font_size = text_box_data.get('font_size', 13)
-    font = (tkFont.Font(family="Arial", ), font_size) if font_size is not None else tkFont.Font(family="Arial", )
-    text_options = {
-        'text': text_box_data['text'],
-        'tags': text_box_data['tags'],
-        'angle': text_box_data['text_rotation'],
-        'font': font,
-    }
-    text_x = (x1 + x2) / 2
-    text_y = (y1 + y2) / 2
-    if 'top' in text_align:
-        text_y = y1
-        text_options.update({'anchor': 'n'})
-    if 'bottom' in text_align:
-        text_y = y2
-        text_options.update({'anchor': 's'})
-    if 'left' in text_align:
-        text_x = x1
-        anchor = text_options.get('anchor', '') + 'w'
-        text_options.update({'anchor': anchor})
-    if 'right' in text_align:
-        text_x = x2
-        anchor = text_options.get('anchor', '') + 'e'
-        text_options.update({'anchor': anchor})
-    canvas.create_text(text_x, text_y, **text_options)
+    text = text_box_data['text']
+    if text != '':
+        w, h = text_box_data['width'], text_box_data['height']
+        x1, y1 = text_box_data['x'], text_box_data['y']
+        x2, y2 = x1 + w, y1 + h
+        text_align = text_box_data.get('text_align', '')
+        font_size = text_box_data.get('font_size', 13)
+        font = (tkFont.Font(family="Arial", ), font_size) if font_size is not None else tkFont.Font(family="Arial", )
+        text_options = {
+            'text': text,
+            'tags': text_box_data['tags'],
+            'angle': text_box_data['text_rotation'],
+            'font': font,
+        }
+        text_x = (x1 + x2) / 2
+        text_y = (y1 + y2) / 2
+        if 'top' in text_align:
+            text_y = y1
+            text_options.update({'anchor': 'n'})
+        if 'bottom' in text_align:
+            text_y = y2
+            text_options.update({'anchor': 's'})
+        if 'left' in text_align:
+            text_x = x1
+            anchor = text_options.get('anchor', '') + 'w'
+            text_options.update({'anchor': anchor})
+        if 'right' in text_align:
+            text_x = x2
+            anchor = text_options.get('anchor', '') + 'e'
+            text_options.update({'anchor': anchor})
+        canvas.create_text(text_x, text_y, **text_options)
 
 
 def add_rectangle(canvas, view_model):
