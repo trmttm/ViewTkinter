@@ -36,7 +36,7 @@ def tree_initial_settings(tree: ttk.Treeview, view_model):
         need_scroll_v: bool = view_model['scroll_v']
         need_scroll_h: bool = view_model['scroll_h']
 
-        tree['show'] = 'headings'
+        tree['show'] = 'tree headings'
         tree['columns'] = tuple(n for n in range(len(headings)))
         for n, column_name in enumerate(headings):
             tree.heading(f'{n}', text=column_name)
@@ -66,12 +66,14 @@ def get_tree_selection_text(tree: ttk.Treeview) -> str:
     return tree.item(id_)['text']
 
 
-def get_all_tree_children(tree: ttk.Treeview, item=""):
+def get_all_tree_children(tree: ttk.Treeview, item="") -> tuple:
     # recursively get all of the children of a tree
     children = tree.get_children(item)
+    flat_order_children = ()
     for child in children:
-        children += get_all_tree_children(tree, child)
-    return children
+        flat_order_children += (child, )
+        flat_order_children += get_all_tree_children(tree, child)
+    return tuple(flat_order_children)
 
 
 def get_tree_values(tree: ttk.Treeview) -> dict:
