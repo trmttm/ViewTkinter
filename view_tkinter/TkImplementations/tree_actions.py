@@ -1,5 +1,5 @@
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
 from typing import Callable
 from typing import Type
 
@@ -13,12 +13,16 @@ def update_tree(tree: ttk.Treeview, view_model):
     tree.selection_clear()
     for tree_data in view_model['tree_datas']:
         parent: str = tree_data['parent']
-        index_: str = tree_data['index']
+        index_: str = tree_data.get('index', 'end')
         text: str = tree_data['text']
         values: tuple = tree_data['values']
         tags: tuple = tree_data['tags']
         select_this_item: bool = tree_data['select_this_item']
-        item = tree.insert(parent, index_, text=text, values=values, tags=tags)
+        iid = tree_data.get('id', None)
+        if iid is not None:
+            item = tree.insert(parent, index_, text=text, iid=iid, values=values, tags=tags)
+        else:
+            item = tree.insert(parent, index_, text=text, values=values, tags=tags)
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)
@@ -64,16 +68,19 @@ def get_tree_selection_text(tree: ttk.Treeview) -> str:
 
 def get_tree_values(tree: ttk.Treeview) -> dict:
     all_ids = tree.get_children()
+    # Rightしたsheetはall_idsに含まれず?
     selected_ids = tree.selection()
     focused_id = get_tree_focused_id(tree)
 
-    tree_values = {}
+    tree_values = {'all_values': []}
     for tree_item_id in all_ids:
+        values_ = tree.item(tree_item_id)['values']
         tree_values[tree_item_id] = {
             'is_selected': tree_item_id in selected_ids,
             'is_focused': tree_item_id == focused_id,
-            'values': tree.item(tree_item_id)['values'],
+            'values': values_,
         }
+        tree_values['all_values'].append(values_)
     tree_values['selected_ids'] = selected_ids
     tree_values['focused_id'] = focused_id
 
