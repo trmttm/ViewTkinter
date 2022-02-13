@@ -66,9 +66,16 @@ def get_tree_selection_text(tree: ttk.Treeview) -> str:
     return tree.item(id_)['text']
 
 
+def get_all_children(tree: ttk.Treeview, item=""):
+    # recursively get all of the children of a tree
+    children = tree.get_children(item)
+    for child in children:
+        children += get_all_children(tree, child)
+    return children
+
+
 def get_tree_values(tree: ttk.Treeview) -> dict:
-    all_ids = tree.get_children()
-    # Rightしたsheetはall_idsに含まれず?
+    all_ids = get_all_children(tree)
     selected_ids = tree.selection()
     focused_id = get_tree_focused_id(tree)
 
