@@ -20,9 +20,9 @@ def update_tree(tree: ttk.Treeview, view_model):
         select_this_item: bool = tree_data['select_this_item']
         iid = tree_data.get('id', None)
         if iid is not None:
-            item = tree.insert(parent, index_, text=text, iid=iid, values=values, tags=tags)
+            item = tree.insert(parent, index_, text=text, iid=iid, values=values, tags=tags, open=True)
         else:
-            item = tree.insert(parent, index_, text=text, values=values, tags=tags)
+            item = tree.insert(parent, index_, text=text, values=values, tags=tags, open=True)
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)
