@@ -35,8 +35,11 @@ def tree_initial_settings(tree: ttk.Treeview, view_model):
         stretches: tuple = view_model['stretches']
         need_scroll_v: bool = view_model['scroll_v']
         need_scroll_h: bool = view_model['scroll_h']
+        text_width: bool = view_model.get('text_width', 0)
 
-        tree['show'] = 'tree headings'
+        tree['show'] = 'tree headings' if text_width > 0 else 'headings'
+        if text_width > 0:
+            tree.column('#0', width=text_width)
         tree['columns'] = tuple(n for n in range(len(headings)))
         for n, column_name in enumerate(headings):
             tree.heading(f'{n}', text=column_name)
