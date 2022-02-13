@@ -9,7 +9,7 @@ widget_tree_view = ttk.Treeview
 def update_tree(tree: ttk.Treeview, view_model):
     tree_initial_settings(tree, view_model)
 
-    tree.delete(*tree.get_children())
+    tree.delete(*get_all_tree_children(tree))
     tree.selection_clear()
     for tree_data in view_model['tree_datas']:
         parent: str = tree_data['parent']
@@ -66,16 +66,16 @@ def get_tree_selection_text(tree: ttk.Treeview) -> str:
     return tree.item(id_)['text']
 
 
-def get_all_children(tree: ttk.Treeview, item=""):
+def get_all_tree_children(tree: ttk.Treeview, item=""):
     # recursively get all of the children of a tree
     children = tree.get_children(item)
     for child in children:
-        children += get_all_children(tree, child)
+        children += get_all_tree_children(tree, child)
     return children
 
 
 def get_tree_values(tree: ttk.Treeview) -> dict:
-    all_ids = get_all_children(tree)
+    all_ids = get_all_tree_children(tree)
     selected_ids = tree.selection()
     focused_id = get_tree_focused_id(tree)
 
@@ -105,7 +105,7 @@ def tree_selected_values(tree: ttk.Treeview) -> tuple:
 
 
 def get_selected_tree_item_orders(tree: ttk.Treeview) -> tuple:
-    all_item_ids = tree.get_children()
+    all_item_ids = get_all_tree_children(tree)
     selected_item_ids = tree.selection()
     return tuple(all_item_ids.index(item_id) for item_id in selected_item_ids)
 
@@ -124,13 +124,13 @@ def bind_tree(command: Callable, tree: ttk.Treeview):
 
 def select_multiple_tree_items(tree: ttk.Treeview, indexes: tuple):
     if indexes:
-        tree_item_ids = tuple(tree.get_children()[n] for n in indexes)
+        tree_item_ids = tuple(get_all_tree_children(tree)[n] for n in indexes)
         tree.focus(tree_item_ids[0])
         tree.selection_set(tree_item_ids)
 
 
 def tree_number_of_items(tree: ttk.Treeview) -> int:
-    return len(tree.get_children())
+    return len(get_all_tree_children(tree))
 
 
 def select_tree(tree: ttk.Treeview, n_th: int = None):
@@ -140,12 +140,12 @@ def select_tree(tree: ttk.Treeview, n_th: int = None):
 
 def select_nth_item_in_the_tree(tree: ttk.Treeview, n):
     if has_something_to_select(tree, n):
-        first_item_id = tree.get_children()[n]
+        first_item_id = get_all_tree_children(tree)[n]
         select_tree_item(tree, first_item_id)
 
 
 def has_something_to_select(tree: ttk.Treeview, index_: int) -> bool:
-    return len(tree.get_children()) > index_
+    return len(get_all_tree_children(tree)) > index_
 
 
 def select_tree_item(tree: ttk.Treeview, tree_item_id):
@@ -153,8 +153,8 @@ def select_tree_item(tree: ttk.Treeview, tree_item_id):
     tree.selection_set(tree_item_id)
 
 
-def get_tree_id_from_position(tree_item_position: int, widget: ttk.Treeview):
-    return widget.get_children()[tree_item_position]
+def get_tree_id_from_position(tree_item_position: int, tree: ttk.Treeview):
+    return get_all_tree_children(tree)[tree_item_position]
 
 
 def add_treeview(options, parent, widget_class: Type[ttk.Treeview]):
