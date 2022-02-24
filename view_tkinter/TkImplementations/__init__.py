@@ -121,6 +121,7 @@ set_coordinates = canvas_actions.set_coordinate
 highlight_shapes = canvas_actions.highlight_shapes
 draw_rectangle = canvas_actions.draw_rectangle
 set_border_color = canvas_actions.set_border_color
+set_text_value = canvas_actions.set_text_value
 set_text_color = canvas_actions.set_text_color
 set_font_size = canvas_actions.set_font_size
 set_fill_color = canvas_actions.set_fill_color
