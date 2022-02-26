@@ -62,7 +62,7 @@ class CheckbuttonWithBool(ttk.Checkbutton):
 
 class ComboBoxWithText(ttk.Combobox):
     def __init__(self, parent, *_, **kwargs):
-        super(ComboBoxWithText, self).__init__(parent,  **kwargs)
+        super(ComboBoxWithText, self).__init__(parent, **kwargs)
 
     def get_value(self) -> str:
         return self.get()
@@ -259,17 +259,20 @@ def add_frame(options, parent, widget_class: Type[ttk.Frame]):
         frame_options_ = {}
 
     widget = widget_class(parent, **options)
+    configure_frame_row_col(frame_options_, widget)
+    return widget
 
-    if frame_options_ != {}:
-        rows, weights = frame_options_['rows_and_weights']
+
+def configure_frame_row_col(frame_options: dict, widget: ttk.Frame):
+    if frame_options != {}:
+        rows, weights = frame_options['rows_and_weights']
         for row, weight in zip(rows, weights):
             widget.grid_rowconfigure(row, weight=weight)
-        cols, weights = frame_options_['cols_and_weights']
+        cols, weights = frame_options['cols_and_weights']
         for col, weight in zip(cols, weights):
             widget.grid_columnconfigure(col, weight=weight)
-        propagate = frame_options_['propagate']
+        propagate = frame_options['propagate']
         widget.grid_propagate(propagate)
-    return widget
 
 
 def add_paned_window(options: dict, parent, widget_class: Type[ttk.Panedwindow], widget_dictionary: dict):
@@ -277,12 +280,18 @@ def add_paned_window(options: dict, parent, widget_class: Type[ttk.Panedwindow],
     frame_ids = options['frame_ids']
     weights = options['weights'] if 'weights' in options else tuple(None for _ in frame_ids)
 
+    frame_options = options.get('frame_options', None)
+
     orient = tk.VERTICAL if is_vertical else tk.HORIZONTAL
     paned_window = widget_class(parent, orient=orient)
-    for frame_id, weight in zip(frame_ids, weights):
+    for n, (frame_id, weight) in enumerate(zip(frame_ids, weights)):
         frame = widgets[FRAME](paned_window, style='a.TFrame')
-        frame.grid_rowconfigure(0, weight=1)
-        frame.grid_columnconfigure(0, weight=1)
+        if frame_options is not None:
+            frame_option = frame_options[n]
+            configure_frame_row_col(frame_option, frame)
+        else:
+            frame.grid_rowconfigure(0, weight=1)
+            frame.grid_columnconfigure(0, weight=1)
         widget_dictionary[frame_id] = frame
         paned_window.add(frame, weight=weight)
     return paned_window
