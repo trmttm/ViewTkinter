@@ -35,7 +35,7 @@ def notebook_options(frame_ids: tuple, frame_names: tuple) -> dict:
 
 
 def radio_button_options(frame_id, inv_var_id, names, is_vertical=False) -> dict:
-    return {'frame_id': frame_id, 'inv_var_id': inv_var_id, 'names': names, 'is_vertical': is_vertical}
+    return {'frame_id': frame_id, 'int_var_id': inv_var_id, 'names': names, 'is_vertical': is_vertical}
 
 
 def top_level_options(title: str, width_height: tuple = None) -> dict:

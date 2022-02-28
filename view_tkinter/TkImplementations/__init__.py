@@ -286,15 +286,19 @@ def add_paned_window(options: dict, parent, widget_class: Type[ttk.Panedwindow],
     paned_window = widget_class(parent, orient=orient)
     for n, (frame_id, weight) in enumerate(zip(frame_ids, weights)):
         frame = widgets[FRAME](paned_window, style='a.TFrame')
-        if frame_options is not None:
-            frame_option = frame_options[n]
-            configure_frame_row_col(frame_option, frame)
-        else:
-            frame.grid_rowconfigure(0, weight=1)
-            frame.grid_columnconfigure(0, weight=1)
+        configure_frame_row_col_options(frame, frame_options, n)
         widget_dictionary[frame_id] = frame
         paned_window.add(frame, weight=weight)
     return paned_window
+
+
+def configure_frame_row_col_options(frame, frame_options, n):
+    if frame_options is not None:
+        frame_option = frame_options[n]
+        configure_frame_row_col(frame_option, frame)
+    else:
+        frame.grid_rowconfigure(0, weight=1)
+        frame.grid_columnconfigure(0, weight=1)
 
 
 def set_paned_window_sash_position(paned_window: ttk.Panedwindow, position: int = None):
@@ -306,10 +310,12 @@ def add_notebook(options: dict, parent, widget_dictionary: dict) -> ttk.Notebook
     frame_ids: tuple = options['frame_ids']
     frame_names: tuple = options['frame_names']
     notebook = widgets[NOTEBOOK](parent)
-    for frame_id, frame_name in zip(frame_ids, frame_names):
+
+    frame_options = options.get('frame_options', None)
+
+    for n, (frame_id, frame_name) in enumerate(zip(frame_ids, frame_names)):
         frame = widgets[FRAME](notebook)
-        frame.grid_columnconfigure(0, weight=1)
-        frame.grid_rowconfigure(0, weight=1)
+        configure_frame_row_col_options(frame, frame_options, n)
         notebook.add(frame, text=frame_name)
         widget_dictionary[frame_id] = frame
     return notebook
@@ -317,7 +323,7 @@ def add_notebook(options: dict, parent, widget_dictionary: dict) -> ttk.Notebook
 
 def add_radio_button(options: dict, parent, widget_dictionary: dict) -> ttk.Frame:
     int_var = widgets[INT_VAR]()
-    int_var_id = options['inv_var_id']
+    int_var_id = options['int_var_id']
     widget_dictionary[int_var_id] = int_var
 
     frame_id = options['frame_id']
@@ -330,7 +336,7 @@ def add_radio_button(options: dict, parent, widget_dictionary: dict) -> ttk.Fram
     widget_dictionary[frame_id] = frame
 
     for n, name in enumerate(names):
-        rb = ttk.Radiobutton(frame, text=name, variable=int_var, value=n)
+        rb = widgets[RADIOBUTTON](frame, text=name, variable=int_var, value=n)
         if vertical:
             rb.grid(row=n, column=0, sticky='nsew')
             frame.grid_columnconfigure(n, weight=1)
