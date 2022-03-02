@@ -137,6 +137,7 @@ get_canvas_height = canvas_actions.get_canvas_height
 bind_change_canvas_size = canvas_actions.bind_change_canvas_size
 get_mouse_canvas_coordinates = canvas_actions.get_mouse_canvas_coordinates
 save_canvas = canvas_actions.save_canvas
+scale_canvas = canvas_actions.scale_canvas
 clear_shapes_by_tag = canvas_actions.clear_shapes_by_tag
 
 get_mid_y_coordinates_of_all_rectangles_on_canvas = canvas_actions.get_mid_y_coordinates_of_all_rectangles_on_canvas
