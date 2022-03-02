@@ -151,11 +151,6 @@ class View(ViewABC):
         canvas = self.get_widget(self._canvas_id)
         TkImpl.save_canvas(canvas, file_name)
 
-    def scale_canvas(self, view_model):
-        canvas = self.get_widget(self._canvas_id)
-        TkImpl.scale_canvas(canvas, view_model)
-        TkImpl.update_canvas_scroll_region(canvas)
-
     # 2) Mouse related methods
     def get_mouse_coordinates_captured(self, event) -> Tuple[int, int]:
         return TkImpl.get_mouse_coordinates(event)

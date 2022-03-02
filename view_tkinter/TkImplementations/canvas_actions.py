@@ -447,8 +447,3 @@ def get_mid_y_coordinates_of_all_rectangles_on_canvas(canvas: tk.Canvas) -> tupl
 
 def save_canvas(canvas: tk.Canvas, file_name: str):
     canvas.postscript(file=file_name, colormode='color')
-
-
-def scale_canvas(canvas: tk.Canvas, view_model):
-    x_to, y_to = view_model
-    canvas.scale('all', 0, 0, x_to, y_to)
