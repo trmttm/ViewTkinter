@@ -160,6 +160,15 @@ class View(ViewABC):
         return TkImpl.get_mouse_canvas_coordinates(canvas)
 
     # 3) General methods
+    def widget_exists(self, widget_id) -> bool:
+        return widget_id in self._widget_dictionary
+
+    def remove_widget(self, widget_id):
+        if widget_id in self._widget_dictionary:
+            widget = self._widget_dictionary[widget_id]
+            TkImpl.remove_widget(widget)
+            del self._widget_dictionary[widget_id]
+
     @property
     def focused_widget(self) -> str:
         dictionary = self._widget_dictionary

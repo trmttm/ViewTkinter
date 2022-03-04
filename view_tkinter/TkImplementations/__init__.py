@@ -482,6 +482,10 @@ def switch_frame(frame: ttk.Frame):
         pass
 
 
+def remove_widget(widget: tk.Widget):
+    widget.destroy()
+
+
 def ask_color(title: str):
     return colorchooser.askcolor(title=title)
 
