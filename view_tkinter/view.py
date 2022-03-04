@@ -160,6 +160,9 @@ class View(ViewABC):
         return TkImpl.get_mouse_canvas_coordinates(canvas)
 
     # 3) General methods
+    def update(self):
+        self._root.update()
+
     def widget_exists(self, widget_id) -> bool:
         return widget_id in self._widget_dictionary
 
