@@ -176,7 +176,7 @@ class View(ViewABC):
         widget_ids = dictionary.keys()
 
         focused_widget = id(TkImpl.get_focused_widget(self._root))
-        widget_id = dict(zip(widgets, widget_ids))[focused_widget]
+        widget_id = dict(zip(widgets, widget_ids)).get(focused_widget, '')
         return widget_id
 
     def set_title(self, title: str):
