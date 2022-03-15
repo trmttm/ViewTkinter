@@ -167,7 +167,7 @@ widgets = {
 
 def define_styles():
     style = ttk.Style()
-    # style.theme_use(style.theme_names()[5])
+    # style.theme_use(style.theme_names()[4])
     style.configure('a.TFrame', )
     style.configure('a.TButton', foreground='blue')
 
