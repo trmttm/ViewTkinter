@@ -11,7 +11,9 @@ def update_tree(tree: ttk.Treeview, view_model):
 
     tree.delete(*get_all_tree_children(tree))
     tree.selection_clear()
-    for tree_data in view_model['tree_datas']:
+    queue = list(view_model['tree_datas'])
+    while len(queue) > 0:
+        tree_data = queue.pop(0)
         parent: str = tree_data['parent']
         index_: str = tree_data.get('index', 'end')
         text: str = tree_data['text']
@@ -19,10 +21,14 @@ def update_tree(tree: ttk.Treeview, view_model):
         tags: tuple = tree_data['tags']
         select_this_item: bool = tree_data['select_this_item']
         iid = tree_data.get('id', None)
-        if iid is not None:
-            item = tree.insert(parent, index_, text=text, iid=iid, values=values, tags=tags, open=True)
-        else:
-            item = tree.insert(parent, index_, text=text, values=values, tags=tags, open=True)
+        try:
+            if iid is not None:
+                item = tree.insert(parent, index_, text=text, iid=iid, values=values, tags=tags, open=True)
+            else:
+                item = tree.insert(parent, index_, text=text, values=values, tags=tags, open=True)
+        except:
+            queue.append(tree_data)  # put it back in the queue it needs parent to be first inserted
+            continue
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)
