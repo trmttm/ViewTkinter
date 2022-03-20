@@ -37,7 +37,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
     fr_pw = 'frame_macro_paned_window'
     fr1 = 'fr_macro_left'
     fr2 = 'fr_macro_right'
-    paned_window_options = intf.paned_window_options(False, (fr1, fr2), (1, 0))
+    paned_window_options = intf.paned_window_options(False, (fr1, fr2), (1, 1))
 
     fr_pane_right = 'fr_pane_right'
     view_model = [
@@ -72,7 +72,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
         wm(fr_pane_right, fr_tree2, 'frame', 0, 0, 1, 1, 'nsew', **intf.frame_options(*rc_0_0)),
         wm(fr_tree2, tree_macros, 'treeview', 0, 0, 0, 0, 'nsew', ),
 
-        wm(fr_tree2, 'tree_btn_frame', 'frame', 1, 1, 0, 0, 'nsew', **intf.frame_options(*rc_0_2)),
+        wm(fr_tree2, 'tree_btn_frame', 'frame', 1, 1, 0, 0, 'nse', **intf.frame_options(*rc_0_2)),
         wm('tree_btn_frame', btn_del_macro, 'button', 0, 0, 0, 0, 'nsew', **{'text': 'Delete', 'width': btn_w}),
 
     ]
