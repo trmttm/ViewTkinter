@@ -46,7 +46,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
         wm(fr_0, 'fr_top', 'frame', 0, 0, 0, 0, 'nswe', **intf.frame_options(*rc_0_2)),
         wm('fr_top', 'Mode', 'label', 0, 0, 0, 0, 'nw', **{'text': 'Record Macro:'}),
         wm('fr_top', cb_macro_mode, 'check_button', 0, 0, 1, 1, 'nw'),
-        wm('fr_top', entry_macro_name, 'entry', 0, 0, 2, 2, 'ne', **{'default_value': 'New Macro Name'}),
+        wm('fr_top', entry_macro_name, 'entry', 0, 0, 2, 2, 'nwe', **{'default_value': 'New Macro Name'}),
         wm('fr_top', btn_set_cmd_name, 'button', 0, 0, 3, 3, 'nsew', **{'text': 'set name', 'width': btn_w}),
         wm('fr_top', btn_set_args, 'button', 0, 0, 4, 4, 'nsew', **{'text': 'set args', 'width': btn_w}),
         wm('fr_top', btn_set_kwargs, 'button', 0, 0, 5, 5, 'nsew', **{'text': 'set kwargs', 'width': btn_w}),

@@ -149,11 +149,35 @@ def bind_tree_middle_click_release(command: Callable, tree: ttk.Treeview):
 
 
 def _bind_tree_click(n: int, tree: ttk.Treeview, command: Callable):
-    tree.bind(f'<Button-{n}>', lambda e: command())
+    tree.bind(f'<Button-{n}>', lambda e: command(get_value_from_tree_click_event(tree, e)))
 
 
 def _bind_tree_click_release(n: int, tree: ttk.Treeview, command: Callable):
-    tree.bind(f'<ButtonRelease-{n}>', lambda e: command())
+    tree.bind(f'<ButtonRelease-{n}>', lambda e: command(get_value_from_tree_click_event(tree, e)))
+
+
+def get_value_from_tree_click_event(tree: ttk.Treeview, event):
+    # select row under mouse
+    row_id = tree.identify_row(event.y)
+    col_id = tree.identify_column(event.x)
+    if row_id:
+        # mouse pointer over item
+        tree.selection_set(row_id)
+        tree.focus(row_id)
+
+        try:
+            column = int(col_id.replace('#', '')) - 1
+        except:
+            column = 0
+        item_id = event.widget.focus()
+        item = event.widget.item(item_id)
+        values = item['values']
+        return tree.get_children().index(row_id), column, values[column]
+    else:
+        # mouse pointer not over item
+        # occurs when items do not fill frame
+        # no action required
+        return None, None, None
 
 
 def select_multiple_tree_items(tree: ttk.Treeview, indexes: tuple):
