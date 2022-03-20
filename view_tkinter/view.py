@@ -295,6 +295,30 @@ class View(ViewABC):
                 select_next = min(indexes[0], max_index)
                 self.select_multiple_tree_items(tree_id, (select_next,))
 
+    def bind_tree_left_click(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_left_click(command, tree)
+
+    def bind_tree_right_click(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_right_click(command, tree)
+
+    def bind_tree_middle_click(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_middle_click(command, tree)
+
+    def bind_tree_left_click_release(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_left_click_release(command, tree)
+
+    def bind_tree_right_click_release(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_right_click_release(command, tree)
+
+    def bind_tree_middle_click_release(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_middle_click_release(command, tree)
+
     # Disk IO
     def select_folder(self, initialdir=None):
         return TkImpl.select_folder(initialdir)

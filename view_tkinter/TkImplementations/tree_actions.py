@@ -74,7 +74,7 @@ def get_all_tree_children(tree: ttk.Treeview, item="") -> tuple:
     children = tree.get_children(item)
     flat_order_children = ()
     for child in children:
-        flat_order_children += (child, )
+        flat_order_children += (child,)
         flat_order_children += get_all_tree_children(tree, child)
     return tuple(flat_order_children)
 
@@ -122,9 +122,38 @@ def get_tree_focused_id(tree: ttk.Treeview):
 
 def bind_tree(command: Callable, tree: ttk.Treeview):
     tree.bind('<<TreeviewSelect>>', lambda e: command())
-    tree.bind(f'<ButtonRelease-{1}>', lambda e: command())
-    tree.bind(f'<ButtonRelease-{2}>', lambda e: command())
-    tree.bind(f'<ButtonRelease-{3}>', lambda e: command())
+
+
+def bind_tree_left_click(command: Callable, tree: ttk.Treeview):
+    _bind_tree_click(1, tree, command)
+
+
+def bind_tree_right_click(command: Callable, tree: ttk.Treeview):
+    _bind_tree_click(2, tree, command)
+
+
+def bind_tree_middle_click(command: Callable, tree: ttk.Treeview):
+    _bind_tree_click(3, tree, command)
+
+
+def bind_tree_left_click_release(command: Callable, tree: ttk.Treeview):
+    _bind_tree_click_release(1, tree, command)
+
+
+def bind_tree_right_click_release(command: Callable, tree: ttk.Treeview):
+    _bind_tree_click_release(2, tree, command)
+
+
+def bind_tree_middle_click_release(command: Callable, tree: ttk.Treeview):
+    _bind_tree_click_release(3, tree, command)
+
+
+def _bind_tree_click(n: int, tree: ttk.Treeview, command: Callable):
+    tree.bind(f'<Button-{n}>', lambda e: command())
+
+
+def _bind_tree_click_release(n: int, tree: ttk.Treeview, command: Callable):
+    tree.bind(f'<ButtonRelease-{n}>', lambda e: command())
 
 
 def select_multiple_tree_items(tree: ttk.Treeview, indexes: tuple):
