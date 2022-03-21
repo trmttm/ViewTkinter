@@ -37,7 +37,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
     fr_pw = 'frame_macro_paned_window'
     fr1 = 'fr_macro_left'
     fr2 = 'fr_macro_right'
-    paned_window_options = intf.paned_window_options(False, (fr1, fr2), (1, 1))
+    paned_window_options = intf.paned_window_options(False, (fr1, fr2), (3, 1))
 
     fr_pane_right = 'fr_pane_right'
     view_model = [
