@@ -18,6 +18,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
     btn_load_macro = kwargs['btn_merge_macro']
     btn_save_macro = kwargs['btn_save_macro']
     btn_run_commands = kwargs['btn_run_commands']
+    btn_run_commands_fast = kwargs['btn_run_commands_fast']
     btn_clear_commands = kwargs['btn_clear_commands']
     btn_del_commands = kwargs['btn_del_commands']
     btn_copy_commands = kwargs['btn_copy_commands']
@@ -61,7 +62,8 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
         wm('tree_btn_frame', btn_copy_commands, 'button', 0, 0, 2, 2, 'nsew', **{'text': 'Copy', 'width': btn_w}),
         wm('tree_btn_frame', btn_del_commands, 'button', 0, 0, 3, 3, 'nsew', **{'text': 'Delete', 'width': btn_w}),
         wm('tree_btn_frame', btn_clear_commands, 'button', 0, 0, 4, 4, 'nsew', **{'text': 'Clear', 'width': btn_w}),
-        wm('tree_btn_frame', btn_run_commands, 'button', 0, 0, 5, 5, 'nsew', **{'text': 'Run', 'width': btn_w}),
+        wm('tree_btn_frame', btn_run_commands, 'button', 0, 0, 5, 5, 'nsew', **{'text': 'Run.S', 'width': btn_w}),
+        wm('tree_btn_frame', btn_run_commands_fast, 'button', 0, 0, 6, 6, 'nsew', **{'text': 'Run.F', 'width': btn_w}),
 
         wm(fr2, fr_pane_right, 'frame', 0, 0, 0, 0, 'nswe', **intf.frame_options(*rc_0_1)),
         wm(fr_pane_right, frame_middle, 'frame', 0, 0, 0, 0, 'nsew', **intf.frame_options(*rc_0_1)),
