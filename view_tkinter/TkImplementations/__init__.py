@@ -176,6 +176,7 @@ def define_styles():
     # style.theme_use(style.theme_names()[4])
     style.configure('a.TFrame', )
     style.configure('a.TButton', foreground='blue')
+    style.configure("Treeview", background="white", foreground="black", fieldbackground="white")
 
 
 def instantiate_root(width: int = None, height: int = None) -> tk.Tk:
