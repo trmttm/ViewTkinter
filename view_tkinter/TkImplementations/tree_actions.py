@@ -12,15 +12,17 @@ def update_tree(tree: ttk.Treeview, view_model):
     tree.delete(*get_all_tree_children(tree))
     tree.selection_clear()
     queue = list(view_model['tree_datas'])
+    item_counter = 0
     while len(queue) > 0:
         tree_data = queue.pop(0)
         parent: str = tree_data['parent']
         index_: str = tree_data.get('index', 'end')
         text: str = tree_data['text']
         values: tuple = tree_data['values']
-        tags: tuple = tree_data['tags'] + ('even',)
         select_this_item: bool = tree_data['select_this_item']
         iid = tree_data.get('id', None)
+        item_unique_tag = f'item_unique_tag_{item_counter}'
+        tags: tuple = tree_data['tags'] + (item_unique_tag,)
         try:
             if iid is not None:
                 item = tree.insert(parent, index_, text=text, iid=iid, values=values, tags=tags, open=True)
@@ -30,12 +32,13 @@ def update_tree(tree: ttk.Treeview, view_model):
             queue.append(tree_data)  # put it back in the queue it needs parent to be first inserted
             continue
         if tree_data.get('background_color', None):
-            tree.tag_configure('even', background=tree_data.get('background_color'))
-        if tree_data.get('foregound_color', None):
-            tree.tag_configure('even', foregound=tree_data.get('foregound_color'))
+            tree.tag_configure(item_unique_tag, background=tree_data.get('background_color'))
+        if tree_data.get('foreground_color', None):
+            tree.tag_configure(item_unique_tag, foreground=tree_data.get('foreground_color'))
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)
+        item_counter += 1
 
 
 def tree_initial_settings(tree: ttk.Treeview, view_model):
