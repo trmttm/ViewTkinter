@@ -18,7 +18,7 @@ def update_tree(tree: ttk.Treeview, view_model):
         index_: str = tree_data.get('index', 'end')
         text: str = tree_data['text']
         values: tuple = tree_data['values']
-        tags: tuple = tree_data['tags']
+        tags: tuple = tree_data['tags'] + ('even',)
         select_this_item: bool = tree_data['select_this_item']
         iid = tree_data.get('id', None)
         try:
@@ -29,6 +29,10 @@ def update_tree(tree: ttk.Treeview, view_model):
         except:
             queue.append(tree_data)  # put it back in the queue it needs parent to be first inserted
             continue
+        if tree_data.get('background_color', None):
+            tree.tag_configure('even', background=tree_data.get('background_color'))
+        if tree_data.get('foregound_color', None):
+            tree.tag_configure('even', foregound=tree_data.get('foregound_color'))
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)
