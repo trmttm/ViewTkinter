@@ -74,6 +74,28 @@ class ComboBoxWithText(ttk.Combobox):
         self.bind('<<ComboboxSelected>>', lambda _: callback(self.get_value()))
 
 
+class ScrollableFrame(ttk.Frame):
+    def __init__(self, container, **kwargs):
+        super().__init__(container, **kwargs)
+        canvas = tk.Canvas(self)
+        scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
+        self.scrollable_frame = ttk.Frame(canvas)
+
+        self.scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            )
+        )
+
+        canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+
+
 ROOT = 'root'
 FRAME = 'frame'
 BUTTON = 'button'
@@ -92,6 +114,7 @@ TOPLEVEL = 'toplevel'
 CHECK_BUTTON = 'check_button'
 BOOLEAN_VAR = 'bool_var'
 COMBO_BOX = 'combo_box'
+SCROLLABLE_FRAME = 'scrollable_frame'
 
 # Tree actions
 widget_tree_view = tree_actions.widget_tree_view
@@ -167,6 +190,7 @@ widgets = {
     CHECK_BUTTON: CheckbuttonWithBool,
     BOOLEAN_VAR: tk.BooleanVar,
     COMBO_BOX: ComboBoxWithText,
+    SCROLLABLE_FRAME: ScrollableFrame,
     INT_VAR: tk.IntVar,
 }
 
@@ -225,10 +249,15 @@ def set_exception_catcher(callback: Callable):
 
 
 def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
+    key_scrollable_frames = 'scrollable_frames'
     for widget_data in view_model:
         parent_id, widget_id, widget_type, row1, row2, col1, col2, sticky, pad_xy, options = widget_data
         widget_class = widgets[widget_type]
-        parent = widget_dictionary[parent_id]
+        if parent_id in widget_dictionary.get(key_scrollable_frames, ()):
+            scrollable_frame: ScrollableFrame = widget_dictionary[parent_id]
+            parent = scrollable_frame.scrollable_frame
+        else:
+            parent = widget_dictionary[parent_id]
         rowspan, columnspan = row2 - row1 + 1, col2 - col1 + 1
         padx, pady = pad_xy or (0, 0)
 
@@ -251,6 +280,12 @@ def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
             continue
         elif widget_type == CHECK_BUTTON:
             widget = CheckbuttonWithBool(parent, **options)
+        elif widget_type == SCROLLABLE_FRAME:
+            widget = ScrollableFrame(parent, **options)
+            if key_scrollable_frames in widget_dictionary:
+                widget_dictionary[key_scrollable_frames].append(widget_id)
+            else:
+                widget_dictionary[key_scrollable_frames] = [widget_id]
         else:
             widget = widget_class(parent, **options)
 
