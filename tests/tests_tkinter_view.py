@@ -261,7 +261,7 @@ class MyConcreteViews(unittest.TestCase):
         from src.view_tkinter.view import View
         from src.view_tkinter.ViewModels import canvas_save_setting
         view = View()
-        view_model = canvas_save_setting('root', 'entry_total_frames','entry_height', 'btn_canvas_save', 50)
+        view_model = canvas_save_setting('root', 'entry_total_frames', 'entry_height', 'btn_canvas_save', 50)
 
         view.add_widgets(view_model)
         view.launch_app()
@@ -388,6 +388,49 @@ class MyConcreteViews(unittest.TestCase):
         view.draw_line(view_model)
 
         view.launch_app()
+
+    def test_scrollable_frame(self):
+        from view_tkinter.view import View
+        from view_tkinter import tk_interface as intf
+        view = View()
+        f = intf.widget_model
+        view_model = [
+            f('root', 'sf', 'scrollable_frame', 0, 0, 0, 0, 'nsew', ),
+            f('sf', 'label1', 'label', 1, 1, 0, 0, 'nsew', **{'text': 'Lable1'}),
+            f('sf', 'label2', 'label', 2, 2, 0, 0, 'nsew', **{'text': 'Lable2'}),
+            f('sf', 'label3', 'label', 3, 3, 0, 0, 'nsew', **{'text': 'Lable3'}),
+            f('sf', 'label4', 'label', 4, 4, 0, 0, 'nsew', **{'text': 'Lable4'}),
+            f('sf', 'label5', 'label', 5, 5, 0, 0, 'nsew', **{'text': 'Lable5'}),
+            f('sf', 'label6', 'label', 6, 6, 0, 0, 'nsew', **{'text': 'Lable6'}),
+            f('sf', 'label7', 'label', 7, 7, 0, 0, 'nsew', **{'text': 'Lable7'}),
+            f('sf', 'label8', 'label', 8, 8, 0, 0, 'nsew', **{'text': 'Lable8'}),
+            f('sf', 'label9', 'label', 9, 9, 0, 0, 'nsew', **{'text': 'Lable9'}),
+            f('sf', 'label10', 'label', 10, 10, 0, 0, 'nsew', **{'text': 'Lable10'}),
+            f('sf', 'label11', 'label', 11, 11, 0, 0, 'nsew', **{'text': 'Lable11'}),
+            f('sf', 'label12', 'label', 12, 12, 0, 0, 'nsew', **{'text': 'Lable12'}),
+            f('sf', 'label13', 'label', 13, 13, 0, 0, 'nsew', **{'text': 'Lable13'}),
+            f('sf', 'label14', 'label', 14, 14, 0, 0, 'nsew', **{'text': 'Lable14'}),
+            f('sf', 'label15', 'label', 15, 15, 0, 0, 'nsew', **{'text': 'Lable15'}),
+            f('sf', 'label1', 'label', 1, 1, 1, 1, 'nsew', **{'text': 'Lable1'}),
+            f('sf', 'label2', 'label', 2, 2, 1, 1, 'nsew', **{'text': 'Lable2'}),
+            f('sf', 'label3', 'label', 3, 3, 1, 1, 'nsew', **{'text': 'Lable3'}),
+            f('sf', 'label4', 'label', 4, 4, 1, 1, 'nsew', **{'text': 'Lable4'}),
+            f('sf', 'label5', 'label', 5, 5, 1, 1, 'nsew', **{'text': 'Lable5'}),
+            f('sf', 'label6', 'label', 6, 6, 1, 1, 'nsew', **{'text': 'Lable6'}),
+            f('sf', 'label7', 'label', 7, 7, 1, 1, 'nsew', **{'text': 'Lable7'}),
+            f('sf', 'label8', 'label', 8, 8, 1, 1, 'nsew', **{'text': 'Lable8'}),
+            f('sf', 'label9', 'label', 9, 9, 1, 1, 'nsew', **{'text': 'Lable9'}),
+            f('sf', 'label10', 'label', 10, 10, 1, 1, 'nsew', **{'text': 'Lable10'}),
+            f('sf', 'label11', 'label', 11, 11, 1, 1, 'nsew', **{'text': 'Lable11'}),
+            f('sf', 'label12', 'label', 12, 12, 1, 1, 'nsew', **{'text': 'Lable12'}),
+            f('sf', 'label13', 'label', 13, 13, 1, 1, 'nsew', **{'text': 'Lable13'}),
+            f('sf', 'label14', 'label', 14, 14, 1, 1, 'nsew', **{'text': 'Lable14'}),
+            f('sf', 'label15', 'label', 15, 15, 1, 1, 'nsew', **{'text': 'Lable15'}),
+        ]
+
+        view.add_widgets(view_model)
+
+        # view.launch_app()
 
 
 if __name__ == '__main__':
