@@ -172,6 +172,11 @@ class View(ViewABC):
             TkImpl.remove_widget(widget)
             del self._widget_dictionary[widget_id]
 
+    def clear_frame(self, frame_id):
+        if frame_id in self._widget_dictionary:
+            frame = self._widget_dictionary[frame_id]
+            TkImpl.clear_frame(frame)
+
     @property
     def focused_widget(self) -> str:
         dictionary = self._widget_dictionary

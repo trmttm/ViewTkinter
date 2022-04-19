@@ -493,6 +493,11 @@ def remove_widget(widget: tk.Widget):
     widget.destroy()
 
 
+def clear_frame(frame: tk.Frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+
+
 def ask_color(title: str):
     return colorchooser.askcolor(title=title)
 
