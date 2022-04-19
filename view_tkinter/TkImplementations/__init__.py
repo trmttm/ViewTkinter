@@ -281,7 +281,9 @@ def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
         elif widget_type == CHECK_BUTTON:
             widget = CheckbuttonWithBool(parent, **options)
         elif widget_type == SCROLLABLE_FRAME:
-            widget = ScrollableFrame(parent, **options)
+            if 'frame options' in options:
+                del options['frame options']
+            widget = widget_class(parent, **options)
             if key_scrollable_frames in widget_dictionary:
                 widget_dictionary[key_scrollable_frames].append(widget_id)
             else:
