@@ -77,7 +77,7 @@ class ComboBoxWithText(ttk.Combobox):
 class ScrollableFrame(ttk.Frame):
     def __init__(self, container, **kwargs):
         super().__init__(container, **kwargs)
-        canvas = tk.Canvas(self)
+        self.canvas = canvas = tk.Canvas(self)
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
         self.scrollable_frame = ttk.Frame(canvas)
 
@@ -88,12 +88,20 @@ class ScrollableFrame(ttk.Frame):
             )
         )
 
-        canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        canvas.bind('<Configure>', self.resize_canvas_window)
 
+        self.canvas_window = canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
         canvas.configure(yscrollcommand=scrollbar.set)
 
         canvas.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
+
+    def resize_canvas_window(self, event):
+        '''
+        Canvas' behavior is different from parent.grid_colmnconfigure + .grid(row, col, sticky)
+        Event binding is required to resize the frame within canvas.
+        '''
+        self.canvas.itemconfig(self.canvas_window, width=event.width)
 
 
 ROOT = 'root'
