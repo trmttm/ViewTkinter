@@ -74,10 +74,17 @@ class ComboBoxWithText(ttk.Combobox):
         self.bind('<<ComboboxSelected>>', lambda _: callback(self.get_value()))
 
 
+def _from_rgb(rgb):
+    """translates an rgb tuple of int to a tkinter friendly color code
+    """
+    r, g, b = rgb
+    return f'#{r:02x}{g:02x}{b:02x}'
+
+
 class ScrollableFrame(ttk.Frame):
     def __init__(self, container, **kwargs):
         super().__init__(container, **kwargs)
-        self.canvas = canvas = tk.Canvas(self)
+        self.canvas = canvas = tk.Canvas(self, bg=_from_rgb((236, 236, 236)))
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
         self.scrollable_frame = ttk.Frame(canvas)
 
