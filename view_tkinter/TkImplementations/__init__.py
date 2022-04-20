@@ -84,7 +84,7 @@ def _from_rgb(rgb):
 class ScrollableFrame(ttk.Frame):
     def __init__(self, container, **kwargs):
         super().__init__(container, **kwargs)
-        self.canvas = canvas = tk.Canvas(self, bg=_from_rgb((236, 236, 236)))
+        self.canvas = canvas = tk.Canvas(self, bg=_from_rgb((236, 236, 236)), highlightthickness=0, )
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
         self.scrollable_frame = ttk.Frame(canvas)
 
