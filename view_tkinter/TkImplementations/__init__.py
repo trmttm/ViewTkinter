@@ -87,6 +87,8 @@ class ScrollableFrame(ttk.Frame):
                 scrollregion=canvas.bbox("all")
             )
         )
+        self.scrollable_frame.grid_rowconfigure(0, weight=1)
+        self.scrollable_frame.grid_columnconfigure(0, weight=1)
 
         canvas.bind('<Configure>', self.resize_canvas_window)
 
