@@ -70,6 +70,9 @@ class ComboBoxWithText(ttk.Combobox):
     def set_value(self, value):
         self.set(value)
 
+    def set_values(self, values: tuple):
+        self['values'] = values
+
     def bind_callback_upon_selection(self, callback):
         self.bind('<<ComboboxSelected>>', lambda _: callback(self.get_value()))
 
@@ -508,6 +511,10 @@ def get_widget_value(widget):
             return widget.get()
         except AttributeError:
             pass
+
+
+def set_combobox_values(widget: ComboBoxWithText, values: tuple):
+    widget.set_values(values)
 
 
 def set_widget_value(widget, value):

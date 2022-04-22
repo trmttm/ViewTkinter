@@ -203,6 +203,10 @@ class View(ViewABC):
         widget = self.get_widget(widget_id)
         return TkImpl.get_widget_value(widget)
 
+    def set_combobox_values(self, widget_id, values: tuple):
+        widget = self.get_widget(widget_id)
+        TkImpl.set_combobox_values(widget, values)
+
     def set_values(self, widget_ids: tuple, values: tuple):
         for widget_id, value in zip(widget_ids, values):
             self.set_value(widget_id, value)
