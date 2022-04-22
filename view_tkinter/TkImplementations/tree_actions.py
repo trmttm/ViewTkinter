@@ -112,6 +112,10 @@ def get_tree_values(tree: ttk.Treeview) -> dict:
     return tree_values
 
 
+def get_all_tree_values(tree: ttk.Treeview):
+    return get_tree_values(tree)['all_values']
+
+
 def tree_focused_values(tree: ttk.Treeview) -> tuple:
     return tree.item(get_tree_focused_id(tree))['values']
 

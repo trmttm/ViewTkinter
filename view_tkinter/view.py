@@ -268,6 +268,14 @@ class View(ViewABC):
         return TkImpl.ask_color(title)[1]
 
     # 4) Tree related methods
+    def get_all_tree_values(self, tree_id=None):
+        if tree_id is not None:
+            tree = self.get_widget(tree_id)
+            return TkImpl.get_all_tree_values(tree)
+        elif self._tree_id is not None:
+            tree = self.get_widget(self._tree_id)
+            return TkImpl.get_all_tree_values(tree)
+
     def switch_tree(self, tree_id):
         self._tree_id = tree_id
 
