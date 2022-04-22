@@ -28,7 +28,7 @@ class EntryWithText(ttk.Entry):
             self.bind('<FocusIn>', lambda *_: self.selection_range(0, tk.END))
 
     def get_value(self):
-        self._var.get()
+        return self._var.get()
 
     def set_value(self, value):
         self._var.set(value)
@@ -506,6 +506,9 @@ def get_widget_value(widget):
         return get_tree_selection_values(widget)
     elif widget_type == widgets[CHECK_BUTTON]:
         w: CheckbuttonWithBool = widget
+        return w.get_value()
+    elif widget_type == EntryWithText:
+        w: EntryWithText = widget
         return w.get_value()
     else:
         try:
