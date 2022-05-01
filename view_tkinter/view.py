@@ -197,7 +197,7 @@ class View(ViewABC):
         TkImpl.set_exception_catcher(callback)
 
     def get_widget(self, widget_id):
-        return self._widget_dictionary[widget_id]
+        return self._widget_dictionary.get(widget_id, None)
 
     def get_value(self, widget_id):
         widget = self.get_widget(widget_id)
@@ -230,8 +230,10 @@ class View(ViewABC):
         widget = self.get_widget(entry_id)
         TkImpl.entry_update(command, widget)
 
-    def update_menu_bar(self, menu_bar_model: dict):
-        TkImpl.update_menu_bar(self._root, menu_bar_model)
+    def update_menu_bar(self, menu_bar_model: dict, toplevel_id=None):
+        top_level = self.get_widget(toplevel_id)
+        widget = top_level if top_level is not None else self._root
+        TkImpl.update_menu_bar(widget, menu_bar_model)
 
     def switch_status_bar(self, status_bar_id):
         self._status_bar_id = status_bar_id
