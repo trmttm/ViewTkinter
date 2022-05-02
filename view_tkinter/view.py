@@ -160,6 +160,11 @@ class View(ViewABC):
         return TkImpl.get_mouse_canvas_coordinates(canvas)
 
     # 3) General methods
+    def set_text(self, widget_id, text: str):
+        widget = self._widget_dictionary.get(widget_id, None)
+        if widget is not None:
+            TkImpl.set_text(widget, text)
+
     def update(self):
         self._root.update()
 

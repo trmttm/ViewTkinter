@@ -474,6 +474,10 @@ def entry_update(callback: Callable, widget):
         w.bind_update(callback)
 
 
+def set_text(widget: tk.Widget, text: str):
+    widget['text'] = text
+
+
 def update_menu_bar(root: tk.Tk, menu_bar_model: dict):
     root.option_add('*tearOff', tk.FALSE)
     menubar = tk.Menu(root)
