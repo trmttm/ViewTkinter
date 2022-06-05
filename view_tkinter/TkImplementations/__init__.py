@@ -463,6 +463,8 @@ def bind_command_to_widget(callback: Callable, widget):
     elif type_check == widgets[COMBO_BOX]:
         w: ComboBoxWithText = widget
         w.bind_callback_upon_selection(callback)
+    elif type_check == widgets[TEXTBOX]:
+        widget.bind('<FocusOut>', callback)
     else:
         widget.configure(command=callback)
 
@@ -514,6 +516,8 @@ def get_widget_value(widget):
     elif widget_type == EntryWithText:
         w: EntryWithText = widget
         return w.get_value()
+    elif widget_type == widgets[TEXTBOX]:
+        return widget.get("1.0", tk.END)()
     else:
         try:
             return widget.get()
