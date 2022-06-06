@@ -36,12 +36,10 @@ def update_tree(tree: ttk.Treeview, view_model):
             tree.tag_configure(item_unique_tag, background=True)
         if tree_data.get('foreground_color', None):
             tree.tag_configure(item_unique_tag, foreground=True)
-        if tree_data.get('strikethrough', False):
-            tree.tag_configure(item_unique_tag, font=font.Font(overstrike=True))
-        if tree_data.get('underline', False):
-            tree.tag_configure(item_unique_tag, font=font.Font(underline=True))
-        if tree_data.get('bold', False):
-            tree.tag_configure(item_unique_tag, font=font.Font(weight='bold'))
+        overstrike = tree_data.get('strikethrough', False)
+        underline = tree_data.get('underline', False)
+        weight = tree_data.get('weight', 'normal')
+        tree.tag_configure(item_unique_tag, font=font.Font(overstrike=overstrike, underline=underline, weight=weight))
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)
