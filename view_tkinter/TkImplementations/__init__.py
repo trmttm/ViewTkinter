@@ -517,7 +517,7 @@ def get_widget_value(widget):
         w: EntryWithText = widget
         return w.get_value()
     elif widget_type == widgets[TEXTBOX]:
-        return widget.get("1.0", tk.END)()
+        return widget.get("1.0", tk.END)
     else:
         try:
             return widget.get()
@@ -585,13 +585,13 @@ def select_folder(initialdir=None):
 
 
 def ask_save_file(initialdir=None):
-    user_feedback = filedialog.asksaveasfile(title='Save as...', initialdir=initialdir)
-    return None if user_feedback is None else user_feedback.name
+    with filedialog.asksaveasfile(title='Save as...', initialdir=initialdir) as user_feedback:
+        return None if user_feedback is None else user_feedback.name
 
 
 def ask_open_file(initialdir=None):
-    user_feedback = filedialog.askopenfile(title='Select File', initialdir=initialdir)
-    return None if user_feedback is None else user_feedback.name
+    with filedialog.askopenfile(title='Select File', initialdir=initialdir) as user_feedback:
+        return None if user_feedback is None else user_feedback.name
 
 
 def ask_yes_no(title, message) -> bool:
