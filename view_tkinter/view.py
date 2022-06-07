@@ -347,8 +347,8 @@ class View(ViewABC):
     def select_folder(self, initialdir=None):
         return TkImpl.select_folder(initialdir)
 
-    def select_save_file(self, initialdir=None):
-        return TkImpl.ask_save_file(initialdir)
+    def select_save_file(self, initialdir=None, initialfile=''):
+        return TkImpl.ask_save_file(initialdir, initialfile)
 
     def select_open_file(self, initialdir=None):
         return TkImpl.ask_open_file(initialdir)

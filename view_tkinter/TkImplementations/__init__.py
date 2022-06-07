@@ -584,8 +584,8 @@ def select_folder(initialdir=None):
     return None if user_feedback is None else user_feedback
 
 
-def ask_save_file(initialdir=None):
-    with filedialog.asksaveasfile(title='Save as...', initialdir=initialdir) as user_feedback:
+def ask_save_file(initialdir=None, initialfile=''):
+    with filedialog.asksaveasfile(title='Save as...', initialdir=initialdir, initialfile=initialfile) as user_feedback:
         return None if user_feedback is None else user_feedback.name
 
 
