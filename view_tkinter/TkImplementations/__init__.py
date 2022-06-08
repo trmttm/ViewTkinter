@@ -140,6 +140,7 @@ SCROLLABLE_FRAME = 'scrollable_frame'
 widget_tree_view = tree_actions.widget_tree_view
 get_tree_selection_values = tree_actions.get_tree_values
 bind_tree = tree_actions.bind_tree
+unbind_tree = tree_actions.unbind_tree
 bind_tree_left_click = tree_actions.bind_tree_left_click
 bind_tree_right_click = tree_actions.bind_tree_right_click
 bind_tree_middle_click = tree_actions.bind_tree_middle_click
@@ -470,6 +471,12 @@ def bind_command_to_widget(callback: Callable, widget):
         widget.bind('<FocusOut>', callback)
     else:
         widget.configure(command=callback)
+
+
+def unbind_command_from_widget(widget):
+    type_check = type(widget)
+    if type_check == widgets[TREEVIEW]:
+        unbind_tree(widget)
 
 
 def entry_update(callback: Callable, widget):

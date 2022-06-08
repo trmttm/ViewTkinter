@@ -146,6 +146,10 @@ def bind_tree(command: Callable, tree: ttk.Treeview):
     tree.bind('<<TreeviewSelect>>', lambda e: command())
 
 
+def unbind_tree(tree: ttk.Treeview):
+    tree.unbind('<<TreeviewSelect>>')
+
+
 def bind_tree_left_click(command: Callable, tree: ttk.Treeview):
     _bind_tree_click(1, tree, command)
 

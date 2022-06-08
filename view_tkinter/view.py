@@ -231,6 +231,10 @@ class View(ViewABC):
         widget = self.get_widget(widget_id)
         TkImpl.bind_command_to_widget(command, widget)
 
+    def unbind_command_from_widget(self, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.unbind_command_from_widget(widget)
+
     def bind_entry_update(self, entry_id, command):
         widget = self.get_widget(entry_id)
         TkImpl.entry_update(command, widget)
