@@ -224,7 +224,7 @@ def define_styles():
     style.configure("Treeview", background="white", foreground="black", fieldbackground="white")
 
 
-def instantiate_root(width: int = None, height: int = None) -> tk.Tk:
+def instantiate_root(width: int = None, height: int = None, fullscreen=False) -> tk.Tk:
     if width is None:
         width = 900
     if height is None:
@@ -234,6 +234,8 @@ def instantiate_root(width: int = None, height: int = None) -> tk.Tk:
         root.iconbitmap(default='applet.ico')
     except:
         pass  # Mac will cause error
+    if fullscreen:
+        root.attributes('-fullscreen', True)
     root.grid_rowconfigure(0, weight=1)
     root.grid_columnconfigure(0, weight=1)
     root.geometry(f'{width}x{height}')

@@ -14,9 +14,9 @@ class View(ViewABC):
     _canvas_max_y = '_canvas_min_x'
     _number_of_periods = '_number_of_periods'
 
-    def __init__(self, master=None, width=None, height=None):
+    def __init__(self, master=None, width=None, height=None, fullscreen=False):
         is_entry_point = master is None
-        root = TkImpl.instantiate_root(width, height) if is_entry_point else master
+        root = TkImpl.instantiate_root(width, height, fullscreen) if is_entry_point else master
 
         self._root = root
         self._is_entry_point_of_application = is_entry_point
