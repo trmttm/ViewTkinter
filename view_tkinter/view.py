@@ -275,6 +275,10 @@ class View(ViewABC):
         return TkImpl.ask_color(title)[1]
 
     # 4) Tree related methods
+    @property
+    def current_tree(self):
+        return self._tree_id
+
     def get_all_tree_values(self, tree_id=None):
         if tree_id is not None:
             tree = self.get_widget(tree_id)
@@ -342,6 +346,10 @@ class View(ViewABC):
     def bind_tree_middle_click_release(self, command: Callable, tree_id=None):
         tree = self.get_widget(tree_id or self._tree_id)
         TkImpl.bind_tree_middle_click_release(command, tree)
+
+    def deselect_tree_items(self, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.deselect_tree_items(tree)
 
     # Disk IO
     def select_folder(self, initialdir=None):

@@ -253,3 +253,8 @@ def focus_tree(widget, kwargs):
     else:
         select_multiple_tree_items(widget, tree_item_position)
         widget.focus_set()
+
+
+def deselect_tree_items(tree: ttk.Treeview):
+    for item in tree.selection():
+        tree.selection_remove(item)

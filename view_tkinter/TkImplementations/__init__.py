@@ -156,6 +156,7 @@ focus_tree = tree_actions.focus_tree
 select_multiple_tree_items = tree_actions.select_multiple_tree_items
 tree_number_of_items = tree_actions.tree_number_of_items
 get_all_tree_values = tree_actions.get_all_tree_values
+deselect_tree_items = tree_actions.deselect_tree_items
 
 # Canvas actions
 widget_canvas = canvas_actions.widget_canvas
