@@ -33,9 +33,9 @@ def update_tree(tree: ttk.Treeview, view_model):
             queue.append(tree_data)  # put it back in the queue it needs parent to be first inserted
             continue
         if tree_data.get('background_color', None):
-            tree.tag_configure(item_unique_tag, background=True)
+            tree.tag_configure(item_unique_tag, background=tree_data.get('background_color', None))
         if tree_data.get('foreground_color', None):
-            tree.tag_configure(item_unique_tag, foreground=True)
+            tree.tag_configure(item_unique_tag, foreground=tree_data.get('foreground_color', None))
         overstrike = tree_data.get('strikethrough', False)
         underline = tree_data.get('underline', False)
         weight = tree_data.get('weight', 'normal')
