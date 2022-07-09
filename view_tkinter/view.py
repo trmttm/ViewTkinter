@@ -160,6 +160,11 @@ class View(ViewABC):
         return TkImpl.get_mouse_canvas_coordinates(canvas)
 
     # 3) General methods
+    def set_foreground_color(self, widget_id, color: str):
+        widget = self._widget_dictionary.get(widget_id, None)
+        if widget:
+            TkImpl.set_foreground_color(widget, color)
+
     def set_text(self, widget_id, text: str):
         widget = self._widget_dictionary.get(widget_id, None)
         if widget is not None:

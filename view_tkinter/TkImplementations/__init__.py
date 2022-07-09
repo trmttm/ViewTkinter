@@ -486,7 +486,11 @@ def entry_update(callback: Callable, widget):
         w.bind_update(callback)
 
 
-def set_text(widget: tk.Widget, text: str):
+def set_foreground_color(widget, color: str):
+    widget.configure(foreground=color)
+
+
+def set_text(widget, text: str):
     widget['text'] = text
 
 

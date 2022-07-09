@@ -26,7 +26,20 @@ def create_configuration_setting(frame, **kwargs):
     entry_bb_w = kwargs.get('bb_w')
     entry_bb_h = kwargs.get('bb_h')
     entry_bb_font_size = kwargs.get('bb_font_size')
+
     frame_account = 'account_frame'
+
+    lbl_format_color_heading_display_bg = kwargs.get('lbl_color_heading_bg' or 'lbl_format_color_heading_display_bg')
+    lbl_format_color_heading_display_text = kwargs.get(
+        'lbl_color_heading_text' or 'lbl_format_color_heading_display_text')
+    lbl_format_color_input_display = kwargs.get('lbl_color_input' or 'lbl_format_color_input_display')
+    lbl_format_color_domestic_input_display = kwargs.get(
+        'lbl_color_domestic_input' or 'lbl_format_color_domestic_input_display')
+    btn_format_color_heading_bg = kwargs.get('btn_format_color_heading_bg', 'btn_format_color_heading_bg')
+    btn_format_color_heading_text = kwargs.get('btn_format_color_heading_text', 'btn_format_color_heading_text')
+    btn_format_color_input = kwargs.get('btn_format_color_input', 'btn_format_color_input')
+    btn_format_color_domestic_input = kwargs.get('btn_format_color_domestic_input', 'btn_format_color_domestic_input')
+    fr_fc = 'frame_format_color'
 
     view_model = [
         wm(frame, fr, 'frame', 0, 0, 0, 0, 'nsew', **intf.frame_options(*rc_0_1)),
@@ -67,6 +80,20 @@ def create_configuration_setting(frame, **kwargs):
 
         wm(fr, 'lbl_relay_x', 'label', 5, 5, 0, 0, 'nsew', **{'text': 'Auto relay at right end'}),
         wm(fr, check_btn_auto_relay_to_right_end, 'check_button', 5, 5, 1, 1, 'w', **{'value': True}),
+
+        wm(fr, fr_fc, 'frame', 6, 6, 0, 0, 'nsew', ),
+        wm(fr_fc, 'lbl_format_color_heading_bg', 'label', 0, 0, 0, 0, 'nsew', **{'text': 'Color Heading Background'}),
+        wm(fr_fc, 'lbl_format_color_heading_text', 'label', 1, 1, 0, 0, 'nsew', **{'text': 'Color Heading Text'}),
+        wm(fr_fc, 'lbl_format_color_input', 'label', 2, 2, 0, 0, 'nsew', **{'text': 'Color Input'}),
+        wm(fr_fc, 'lbl_format_color_domestic_input', 'label', 3, 3, 0, 0, 'nsew', **{'text': 'Color Domestic Input'}),
+        wm(fr_fc, lbl_format_color_heading_display_bg, 'label', 0, 0, 1, 1, 'nsew', **{'text': '■■■■'}),
+        wm(fr_fc, lbl_format_color_heading_display_text, 'label', 1, 1, 1, 1, 'nsew', **{'text': '■■■■'}),
+        wm(fr_fc, lbl_format_color_input_display, 'label', 2, 2, 1, 1, 'nsew', **{'text': '■■■■'}),
+        wm(fr_fc, lbl_format_color_domestic_input_display, 'label', 3, 3, 1, 1, 'nsew', **{'text': '■■■■'}),
+        wm(fr_fc, btn_format_color_heading_bg, 'button', 0, 0, 2, 2, 'nsew', **{'text': 'Set', 'width': 3}),
+        wm(fr_fc, btn_format_color_heading_text, 'button', 1, 1, 2, 2, 'nsew', **{'text': 'Set', 'width': 3}),
+        wm(fr_fc, btn_format_color_input, 'button', 2, 2, 2, 2, 'nsew', **{'text': 'Set', 'width': 3}),
+        wm(fr_fc, btn_format_color_domestic_input, 'button', 3, 3, 2, 2, 'nsew', **{'text': 'Set', 'width': 3}),
 
     ]
     return view_model
