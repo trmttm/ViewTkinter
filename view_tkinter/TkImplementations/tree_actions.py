@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import font
 from tkinter import ttk
 from typing import Callable
+from typing import Tuple
 from typing import Type
 
 widget_tree_view = ttk.Treeview
@@ -59,8 +60,7 @@ def tree_initial_settings(tree: ttk.Treeview, view_model):
         if text_width > 0:
             tree.column('#0', width=text_width)
         tree['columns'] = tuple(n for n in range(len(headings)))
-        for n, column_name in enumerate(headings):
-            tree.heading(f'{n}', text=column_name)
+        set_tree_headings(headings, tree)
         for n, (width, stretch) in enumerate(zip(widths, stretches)):
             tree.column(f'{n}', width=width, stretch=stretch)
 
@@ -76,6 +76,11 @@ def tree_initial_settings(tree: ttk.Treeview, view_model):
             scroll.configure(command=tree.xview)
             tree.configure(xscrollcommand=scroll.set)
             scroll.grid(row=1, column=0, sticky='we')
+
+
+def set_tree_headings(headings: Tuple[str, ...], tree: ttk.Treeview):
+    for n, column_name in enumerate(headings):
+        tree.heading(f'{n}', text=column_name)
 
 
 def is_first_time_updating_the_tree(tree: ttk.Treeview):

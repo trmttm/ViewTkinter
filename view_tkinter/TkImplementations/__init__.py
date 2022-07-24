@@ -149,6 +149,7 @@ bind_tree_right_click_release = tree_actions.bind_tree_right_click_release
 bind_tree_middle_click_release = tree_actions.bind_tree_middle_click_release
 add_treeview = tree_actions.add_treeview
 update_tree = tree_actions.update_tree
+set_tree_headings = tree_actions.set_tree_headings
 get_tree_selection_text = tree_actions.get_tree_selection_text
 tree_focused_values = tree_actions.tree_focused_values
 tree_selected_values = tree_actions.tree_selected_values

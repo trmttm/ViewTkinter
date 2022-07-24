@@ -288,6 +288,10 @@ class View(ViewABC):
     def current_tree(self):
         return self._tree_id
 
+    def set_tree_headings(self, tree_id: str, headings: Tuple[str, ...]):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.set_tree_headings(headings, tree)
+
     def get_all_tree_values(self, tree_id=None):
         if tree_id is not None:
             tree = self.get_widget(tree_id)
