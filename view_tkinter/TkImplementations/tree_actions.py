@@ -213,9 +213,12 @@ def get_value_from_tree_click_event(tree: ttk.Treeview, event):
 
 def select_multiple_tree_items(tree: ttk.Treeview, indexes: tuple):
     if indexes:
-        tree_item_ids = tuple(get_all_tree_children(tree)[n] for n in indexes)
-        tree.focus(tree_item_ids[0])
-        tree.selection_set(tree_item_ids)
+        try:
+            tree_item_ids = tuple(get_all_tree_children(tree)[n] for n in indexes)
+            tree.focus(tree_item_ids[0])
+            tree.selection_set(tree_item_ids)
+        except IndexError:
+            pass
 
 
 def tree_number_of_items(tree: ttk.Treeview) -> int:
