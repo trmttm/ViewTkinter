@@ -15,6 +15,7 @@ def update_tree(tree: ttk.Treeview, view_model):
     tree.selection_clear()
     queue = list(view_model['tree_datas'])
     item_counter = 0
+    font_size = view_model.get('font_size', None)
     while len(queue) > 0:
         tree_data = queue.pop(0)
         parent: str = tree_data['parent']
@@ -40,7 +41,10 @@ def update_tree(tree: ttk.Treeview, view_model):
         overstrike = tree_data.get('strikethrough', False)
         underline = tree_data.get('underline', False)
         weight = tree_data.get('weight', 'normal')
-        tree.tag_configure(item_unique_tag, font=font.Font(overstrike=overstrike, underline=underline, weight=weight))
+        font_options = {'overstrike': overstrike, 'underline': underline, 'weight': weight}
+        if font_size is not None:
+            font_options.update({'size': font_size})
+        tree.tag_configure(item_unique_tag, font=font.Font(**font_options))
         if select_this_item:
             tree.selection_add(item)
             tree.focus(item)

@@ -224,7 +224,12 @@ def define_styles():
     # style.theme_use(style.theme_names()[4])
     style.configure('a.TFrame', )
     style.configure('a.TButton', foreground='blue')
-    style.configure("Treeview", background="white", foreground="black", fieldbackground="white")
+
+    row_height = None
+    tree_style_options = {'background': "white", 'foreground': "black", 'fieldbackground': "white"}
+    if row_height is not None:
+        tree_style_options.update({'rowheight': row_height})
+    style.configure("Treeview", **tree_style_options)
 
     # ★バグ対応を処理
     style.map('Treeview', foreground=fixed_map('foreground', style), background=fixed_map('background', style))
