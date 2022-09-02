@@ -226,6 +226,15 @@ def define_styles():
     style.configure('a.TButton', foreground='blue')
     style.configure("Treeview", background="white", foreground="black", fieldbackground="white")
 
+    # ★バグ対応を処理
+    style.map('Treeview', foreground=fixed_map('foreground', style), background=fixed_map('background', style))
+
+
+# ★バグ対応用の関数を追加
+def fixed_map(option, style):
+    return [elm for elm in style.map('Treeview', query_opt=option) if
+            elm[:2] != ('!disabled', '!selected')]
+
 
 def instantiate_root(width: int = None, height: int = None, fullscreen=False) -> tk.Tk:
     if width is None:
