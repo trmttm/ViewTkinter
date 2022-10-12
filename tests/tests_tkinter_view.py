@@ -5,7 +5,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_add_widgets(self):
         from src.view_tkinter.tk_interface import widget_model as wm
-        from src.view_tkinter import tk_interface as intf
+        import interface_tk as intf
         from src.view_tkinter.view import View
 
         view = View()
@@ -111,7 +111,7 @@ def get_view_model_slider(origin, slider_wh: tuple, handle_wh: tuple, min_max_wh
 class MyConcreteViews(unittest.TestCase):
 
     def test_pre_defined_view_models(self):
-        from src.view_tkinter import tk_interface as intf
+        import interface_tk as intf
         f = intf.widget_model
         frame_root_id = 1
         parent_id = 'root'
@@ -130,7 +130,7 @@ class MyConcreteViews(unittest.TestCase):
         # view.launch_app()
 
     def test_view_status_bar(self):
-        from src.view_tkinter import tk_interface as intf
+        import interface_tk as intf
         f = intf.widget_model
         frame_root_id = 1
         parent_id = 'root'
@@ -159,7 +159,7 @@ class MyConcreteViews(unittest.TestCase):
         # view.launch_app()
 
     def test_frame_switcher(self):
-        from src.view_tkinter import tk_interface as intf
+        import interface_tk as intf
         f = intf.widget_model
         frame_root_id = 1
         parent_id = 'root'
@@ -268,7 +268,7 @@ class MyConcreteViews(unittest.TestCase):
 
     def test_graph(self):
         from src.view_tkinter.view import View
-        from src.view_tkinter import tk_interface as intf
+        import interface_tk as intf
         view = View()
         f = intf.widget_model
         view_model = [

@@ -1,5 +1,5 @@
-from .. import tk_interface as intf
-from ..tk_interface import widget_model as wm
+import interface_tk as intf
+from interface_tk import widget_model as wm
 
 
 def create_macro_manager_view_model(frame, **kwargs) -> list:

@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def input_entry(frame_ie='frame_input_entry',

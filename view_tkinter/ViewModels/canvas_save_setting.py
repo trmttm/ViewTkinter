@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def canvas_save_setting(frame_id, entry_total_frames, entry_height, btn_canvas_save, default_entry=50,

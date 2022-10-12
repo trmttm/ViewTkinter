@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def operator_buttons(frame_id, button_width=None) -> list:

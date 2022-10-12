@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def entry_and_button(frame_id, entry_id, entry_width, button_id, button_text, button_width, default_entry: str = ''):

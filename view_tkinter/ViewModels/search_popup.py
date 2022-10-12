@@ -1,5 +1,5 @@
-from .. import tk_interface as intf
-from ..tk_interface import widget_model as wm
+import interface_tk as intf
+from interface_tk import widget_model as wm
 
 
 def create_view_model_search_popup(toplevel, entry, tree):

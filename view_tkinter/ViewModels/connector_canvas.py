@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def connector_canvas(frame_connector_canvas,

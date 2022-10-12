@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def connection_manager(frame_ie='frame_connection_manager',

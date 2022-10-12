@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def create_d_pad_model(frame_id, button_ids_x4: tuple, button_width=None) -> list:

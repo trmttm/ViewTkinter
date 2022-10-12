@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def main_menu_contents(frame_id, button_width=None, padding: tuple = None) -> list:

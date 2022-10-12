@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def tree_view(frame_id, tree_id='tree_id') -> list:

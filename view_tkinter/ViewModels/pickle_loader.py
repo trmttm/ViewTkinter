@@ -1,4 +1,4 @@
-from .. import tk_interface as intf
+import interface_tk as intf
 
 
 def pickle_loader(frame_id, tree_id='tree_id', pickle_canvas='canvas', button_width=None) -> list:
