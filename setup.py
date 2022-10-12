@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='view_tkinter',
     version='1.0.0',
-    packages=['view_tkinter', 'view_tkinter.TkImplementations', 'view_tkinter.ViewModels'],
+    packages=['view_tkinter', 'view_tkinter.TkImplementations', 'ViewModels'],
     url='',
     license='',
     author='Taro Yamaka',
