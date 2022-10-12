@@ -391,7 +391,7 @@ class MyConcreteViews(unittest.TestCase):
 
     def test_scrollable_frame(self):
         from view_tkinter.view import View
-        from view_tkinter import tk_interface as intf
+        import interface_tk as intf
         view = View()
         f = intf.widget_model
         view_model = [
