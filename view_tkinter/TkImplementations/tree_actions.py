@@ -15,7 +15,7 @@ def update_tree(tree: ttk.Treeview, view_model):
     tree.selection_clear()
     queue = list(view_model['tree_datas'])
     item_counter = 0
-    font_size = view_model.get('font_size', None)
+    font_size = view_model.get('font_size', 10)
     while len(queue) > 0:
         tree_data = queue.pop(0)
         parent: str = tree_data['parent']
