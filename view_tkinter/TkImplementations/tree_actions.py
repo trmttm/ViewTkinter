@@ -5,6 +5,8 @@ from typing import Callable
 from typing import Tuple
 from typing import Type
 
+import os_identifier
+
 widget_tree_view = ttk.Treeview
 
 
@@ -15,7 +17,11 @@ def update_tree(tree: ttk.Treeview, view_model):
     tree.selection_clear()
     queue = list(view_model['tree_datas'])
     item_counter = 0
-    font_size = view_model.get('font_size', 10)
+    if os_identifier.is_windows:
+        tree_font_size = 10
+    else:
+        tree_font_size = None
+    font_size = view_model.get('font_size', tree_font_size)
     while len(queue) > 0:
         tree_data = queue.pop(0)
         parent: str = tree_data['parent']
