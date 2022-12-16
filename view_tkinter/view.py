@@ -360,6 +360,10 @@ class View(ViewABC):
         tree = self.get_widget(tree_id or self._tree_id)
         TkImpl.bind_tree_middle_click_release(command, tree)
 
+    def bind_tree_enter(self, command: Callable, tree_id=None):
+        tree = self.get_widget(tree_id or self._tree_id)
+        TkImpl.bind_tree_enter(command, tree)
+
     def deselect_tree_items(self, tree_id=None):
         tree = self.get_widget(tree_id or self._tree_id)
         TkImpl.deselect_tree_items(tree)
