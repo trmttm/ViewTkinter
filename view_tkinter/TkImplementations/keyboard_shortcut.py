@@ -276,6 +276,8 @@ def interpret_key(key, keysym, state) -> tuple:
         return keysym, 0
     elif is_windows and keysym in ('F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',):
         return keysym, 0
+    elif state == n_control:
+        return keysym, 0
     else:
         return tk_key_interpreter[key] if key in tk_key_interpreter else (key, 0)
 
