@@ -89,6 +89,46 @@ tk_modifier_interpreter = {
     tk_n_none + tk_n_all: n_all,
 }
 
+modifier_to_elements = {
+    tk_n_none: [n_none, ],
+
+    tk_n_none + tk_n_shift: [n_shift, ],
+    tk_n_none + tk_n_function: [n_function, ],
+    tk_n_none + tk_n_control: [n_control, ],
+    tk_n_none + tk_n_option: [n_option, ],
+    tk_n_none + tk_n_command: [n_command, ],
+
+    tk_n_none + tk_n_shift + tk_n_function: [n_shift, n_function, ],
+    tk_n_none + tk_n_shift + tk_n_control: [n_shift, n_control, ],
+    tk_n_none + tk_n_shift + tk_n_option: [n_shift, n_option, ],
+    tk_n_none + tk_n_shift + tk_n_command: [n_shift, n_command, ],
+    tk_n_none + tk_n_control + tk_n_function: [n_control, n_function, ],
+    tk_n_none + tk_n_control + tk_n_option: [n_control, n_option, ],
+    tk_n_none + tk_n_control + tk_n_command: [n_control, n_command, ],
+    tk_n_none + tk_n_command + tk_n_function: [n_command, n_function, ],
+    tk_n_none + tk_n_command + tk_n_option: [n_command, n_option, ],
+    tk_n_none + tk_n_function + tk_n_option: [n_function, n_option, ],
+
+    tk_n_none + tk_n_all - (tk_n_shift + tk_n_function): [n_control, n_option, n_command, ],
+    tk_n_none + tk_n_all - (tk_n_shift + tk_n_control): [n_function, n_option, n_command, ],
+    tk_n_none + tk_n_all - (tk_n_shift + tk_n_option): [n_function, n_control, n_command, ],
+    tk_n_none + tk_n_all - (tk_n_shift + tk_n_command): [n_function, n_control, n_option, ],
+    tk_n_none + tk_n_all - (tk_n_control + tk_n_function): [n_shift, n_option, n_command, ],
+    tk_n_none + tk_n_all - (tk_n_control + tk_n_option): [n_shift, n_function, n_command, ],
+    tk_n_none + tk_n_all - (tk_n_control + tk_n_command): [n_shift, n_function, n_option, ],
+    tk_n_none + tk_n_all - (tk_n_command + tk_n_function): [n_shift, n_control, n_option, ],
+    tk_n_none + tk_n_all - (tk_n_command + tk_n_option): [n_shift, n_function, n_control, ],
+    tk_n_none + tk_n_all - (tk_n_function + tk_n_option): [n_shift, n_control, n_command, ],
+
+    tk_n_none + tk_n_all - tk_n_shift: [n_function, n_control, n_option, n_command, ],
+    tk_n_none + tk_n_all - tk_n_function: [n_shift, n_control, n_option, n_command, ],
+    tk_n_none + tk_n_all - tk_n_control: [n_shift, n_function, n_option, n_command, ],
+    tk_n_none + tk_n_all - tk_n_option: [n_shift, n_function, n_control, n_command, ],
+    tk_n_none + tk_n_all - tk_n_command: [n_shift, n_function, n_control, n_option, ],
+
+    tk_n_none + tk_n_all: [n_shift, n_function, n_control, n_option, n_command, ],
+}
+
 tk_key_interpreter = {
     # General
     ' ': (space, 0),
@@ -186,7 +226,45 @@ tk_key_interpreter = {
     '(': ('9', 1),
     ')': ('0', 1),
     '_': ('-', 1),
-    '+': ('=', 1),
+
+    # Shift + Option
+    'Å': ('a', 1),
+    'ı': ('b', 1),
+    'Ç': ('c', 1),
+    'Î': ('d', 1),
+    # '´': ('e', 1), # Not assigned
+    'Ï': ('f', 1),
+    '˝': ('g', 1),
+    'Ó': ('h', 1),
+    # 'ˆ': ('i', 1),# Not assigned
+    'Ô': ('j', 1),
+    '': ('k', 1),
+    'Ò': ('l', 1),
+    'Â': ('m', 1),
+    # '˜': ('n', 1),# Not assigned
+    'Ø': ('o', 1),
+    '∏': ('p', 1),
+    'Œ': ('q', 1),
+    '‰': ('r', 1),
+    'Í': ('s', 1),
+    'ˇ': ('t', 1),
+    # '¨': ('u', 1),# Not assigned
+    '◊': ('v', 1),
+    '„': ('w', 1),
+    '': ('x', 1),
+    'Á': ('y', 1),
+    '¸': ('z', 1),
+    '±': ('=', 1),
+    '⁄': ('1', 1),
+    '€': ('2', 1),
+    '‹': ('3', 1),
+    '›': ('4', 1),
+    'ﬁ': ('5', 1),
+    '‡': ('7', 1),
+    '°': ('8', 1),
+    '·': ('9', 1),
+    '‚': ('0', 1),
+    '—': ('-', 1),
 
     # Control
     '\x01': ('a', 0),
@@ -218,7 +296,6 @@ tk_key_interpreter = {
     '\x1f': ('-', 0),
 
     # Command Option
-    '^': ('i', 0),
     '~': ('n', 0),
 }
 
