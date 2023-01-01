@@ -8,11 +8,6 @@ from . import TkImplementations as TkImpl
 
 
 class View(ViewABC):
-    _canvas_min_y = '_canvas_min_y'
-
-    # View is the human hand holding InputEntry controller. Shapes on canvas are fingers, *not* buttons.
-    _canvas_max_y = '_canvas_min_x'
-    _number_of_periods = '_number_of_periods'
 
     def __init__(self, master=None, width=None, height=None, fullscreen=False):
         is_entry_point = master is None
