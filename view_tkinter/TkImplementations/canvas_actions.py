@@ -314,27 +314,34 @@ def get_tag_from_canvas_id(canvas: tk.Canvas, canvas_id):
 
 
 def bind_canvas(callback, widget: tk.Canvas):
+    if os_identifier.is_mac:
+        bind_mouse_mac(callback, widget)
+    else:
+        bind_mouse_windows_or_unix(callback, widget)
+    bind_mouse_enter_and_leave(callback, widget)
+
+
+def bind_mouse_windows_or_unix(callback, widget):
     left = 'LEFT'
     right = 'RIGHT'
     middle = 'MIDDLE'
+    modifiers = [tk_shift, tk_control, tk_alt]
+    bind_mouse_actions(1, left, callback, widget, modifiers)
+    bind_mouse_actions(3, right, callback, widget, modifiers)
+    bind_mouse_actions(2, middle, callback, widget, modifiers)
 
-    """
-    Right click
-    2 on the Mac
-    3 on unix and windows.
-    """
 
-    if os_identifier.is_mac:
-        modifiers = [tk_shift, tk_control, tk_command, tk_option]
-        bind_mouse_actions(1, left, callback, widget, modifiers)
-        bind_mouse_actions(2, right, callback, widget, modifiers)
-        bind_mouse_actions(3, middle, callback, widget, modifiers)
-    else:
-        modifiers = [tk_shift, tk_control, tk_alt]
-        bind_mouse_actions(1, left, callback, widget, modifiers)
-        bind_mouse_actions(3, right, callback, widget, modifiers)
-        bind_mouse_actions(2, middle, callback, widget, modifiers)
+def bind_mouse_mac(callback, widget):
+    left = 'LEFT'
+    right = 'RIGHT'
+    middle = 'MIDDLE'
+    modifiers = [tk_shift, tk_control, tk_command, tk_option]
+    bind_mouse_actions(1, left, callback, widget, modifiers)
+    bind_mouse_actions(2, right, callback, widget, modifiers)
+    bind_mouse_actions(3, middle, callback, widget, modifiers)
 
+
+def bind_mouse_enter_and_leave(callback, widget):
     mouse_in = 'MOUSE_IN'
     mouse_out = 'MOUSE_OUT'
     cb = callback
