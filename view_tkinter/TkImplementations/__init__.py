@@ -254,7 +254,7 @@ def instantiate_root(width: int = None, height: int = None, fullscreen=False) ->
         pass  # Mac will cause error
     if fullscreen:
         w, h = root.winfo_screenwidth(), root.winfo_screenheight()
-        root.geometry("%dx%d+0+0" % (w, h))
+        root.geometry(f'{w}x{h}')
     else:
         root.geometry(f'{width}x{height}')
     root.grid_rowconfigure(0, weight=1)
