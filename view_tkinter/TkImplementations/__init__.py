@@ -635,3 +635,7 @@ def close(widget):
         widget.grab_release()  # entries on root will be enabled.
 
     widget.destroy()
+
+
+def change_label_text_color(label: tk.Widget, color):
+    label.configure(foreground=color)

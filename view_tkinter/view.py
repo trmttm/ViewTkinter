@@ -363,6 +363,10 @@ class View(ViewABC):
         tree = self.get_widget(tree_id or self._tree_id)
         TkImpl.deselect_tree_items(tree)
 
+    def change_label_text_color(self, label_id, color):
+        label = self.get_widget(label_id)
+        TkImpl.change_label_text_color(label, color)
+
     # Disk IO
     def select_folder(self, initialdir=None):
         return TkImpl.select_folder(initialdir)

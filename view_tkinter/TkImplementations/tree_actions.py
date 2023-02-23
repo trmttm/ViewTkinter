@@ -269,16 +269,11 @@ def add_treeview(options, parent, widget_class: Type[ttk.Treeview]):
 
 
 def focus_tree(widget, kwargs):
-    try:
-        tree_item_position = kwargs['tree_item_position'] or 0
-    except KeyError:
-        tree_item_position = 0
+    widget.focus_set()
+    tree_item_position = kwargs.get('tree_item_position', None)
 
-    if type(tree_item_position) in (int,):
-        select_tree(widget, tree_item_position)
-    else:
+    if tree_item_position is not None:
         select_multiple_tree_items(widget, tree_item_position)
-        widget.focus_set()
 
 
 def deselect_tree_items(tree: ttk.Treeview):
