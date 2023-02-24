@@ -231,7 +231,7 @@ def select_multiple_tree_items(tree: ttk.Treeview, indexes: tuple):
             tree_item_ids = tuple(get_all_tree_children(tree)[n] for n in indexes)
             tree.focus(tree_item_ids[0])
             tree.selection_set(tree_item_ids)
-        except IndexError:
+        except (IndexError, TypeError):
             pass
 
 
