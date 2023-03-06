@@ -227,6 +227,10 @@ class View(ViewABC):
         if self._is_entry_point_of_application:
             self._root.mainloop()
 
+    def bind_widget_entry(self, widget_id, command):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_widget_entry(command, widget)
+
     def bind_command_to_widget(self, widget_id, command):
         widget = self.get_widget(widget_id)
         TkImpl.bind_command_to_widget(command, widget)

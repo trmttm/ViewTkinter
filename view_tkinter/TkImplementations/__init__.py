@@ -465,6 +465,14 @@ def get_mouse_coordinates(event) -> Tuple[int, int]:
     return event.x, event.y
 
 
+def bind_widget_entry(callback: Callable, widget):
+    type_check = type(widget)
+    if type_check == widgets[TREEVIEW]:
+        tree_actions.bind_tree_enter(callback, widget)
+    else:
+        widget.bind(f'<Enter>', lambda e: callback())
+
+
 def bind_command_to_widget(callback: Callable, widget):
     type_check = type(widget)
     if type_check == widgets[CANVAS]:
