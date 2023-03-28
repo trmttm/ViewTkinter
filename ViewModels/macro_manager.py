@@ -27,6 +27,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
     btn_set_cmd_name = kwargs['btn_set_command_name']
     btn_set_args = kwargs['btn_set_args']
     btn_set_kwargs = kwargs['btn_set_kwargs']
+    btn_replace_args = kwargs['btn_replace_args']
     tree_cmds = kwargs['tree_commands']
     tree_macros = kwargs['tree_macros']
     cb_macro_mode = kwargs['check_btn_macro_mode']
@@ -51,6 +52,7 @@ def create_macro_manager_view_model(frame, **kwargs) -> list:
         wm('fr_top', btn_set_cmd_name, 'button', 0, 0, 3, 3, 'nsew', **{'text': 'set name', 'width': btn_w}),
         wm('fr_top', btn_set_args, 'button', 0, 0, 4, 4, 'nsew', **{'text': 'set args', 'width': btn_w}),
         wm('fr_top', btn_set_kwargs, 'button', 0, 0, 5, 5, 'nsew', **{'text': 'set kwargs', 'width': btn_w}),
+        wm('fr_top', btn_replace_args, 'button', 0, 0, 6, 6, 'nsew', **{'text': 'replace args', 'width': btn_w}),
 
         wm(fr_0, fr_pw, 'paned_window', 1, 1, 0, 0, 'nsew', **paned_window_options),
 
