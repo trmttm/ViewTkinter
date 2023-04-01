@@ -26,27 +26,16 @@ class EntryWithText(ttk.Entry):
     def __init__(self, parent, *_, **kwargs):
         value = kwargs['default_value'] if 'default_value' in kwargs else ''
         auto_select_off = kwargs['auto_select_off'] if 'auto_select_off' in kwargs else False
-        dnd = kwargs.get('drag_and_drop', None)
         self._var = var = widgets[STRING_VAR](value=value)
         if 'default_value' in kwargs:
             del kwargs['default_value']
         if 'auto_select_off' in kwargs:
             del kwargs['auto_select_off']
-        if 'drag_and_drop' in kwargs:
-            del kwargs['drag_and_drop']
 
         super(EntryWithText, self).__init__(parent, textvariable=var, **kwargs)
 
         if not auto_select_off:
             self.bind('<FocusIn>', lambda *_: self.selection_range(0, tk.END))
-
-        # Drag and Drop
-        dnd = {}
-        if (dnd is not None) and tkinterdnd2_imported:
-            self.drop_target_register('DND_Files')
-            self.dnd_bind('<<DropEnter>>', dnd.get('drop_enter', lambda e: print(e)))
-            self.dnd_bind('<<DropLeave>>', dnd.get('drop_leave', lambda e: print(e)))
-            self.dnd_bind('<<Drop>>', dnd.get('drop', lambda e: print(e)))
 
     def get_value(self):
         return self._var.get()
@@ -325,6 +314,11 @@ def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
         rowspan, columnspan = row2 - row1 + 1, col2 - col1 + 1
         padx, pady = pad_xy or (0, 0)
 
+        # Drag and Drop - 1/2
+        dnd = options.get('drag_and_drop', None)
+        if 'drag_and_drop' in options:
+            del options['drag_and_drop']
+
         if widget_type == FRAME:
             widget = add_frame(options, parent, widget_class)
         elif widget_type == ENTRY:
@@ -354,6 +348,14 @@ def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
                 widget_dictionary[key_scrollable_frames] = [widget_id]
         else:
             widget = widget_class(parent, **options)
+
+        # Drag and Drop - 2/2
+        dnd = {}
+        if (dnd is not None) and tkinterdnd2_imported:
+            widget.drop_target_register('DND_Files')
+            widget.dnd_bind('<<DropEnter>>', dnd.get('drop_enter', lambda e: print(e)))
+            widget.dnd_bind('<<DropLeave>>', dnd.get('drop_leave', lambda e: print(e)))
+            widget.dnd_bind('<<Drop>>', dnd.get('drop', lambda e: print(e)))
 
         widget_dictionary[widget_id] = widget
         widget.grid(row=row1, column=col1, rowspan=rowspan, columnspan=columnspan, sticky=sticky, padx=padx, pady=pady)
