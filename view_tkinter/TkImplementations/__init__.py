@@ -12,20 +12,41 @@ from . import canvas_actions
 from . import keyboard_shortcut
 from . import tree_actions
 
+try:
+    import tkinterdnd2 as tkdnd
+
+    root_class = tkdnd.TkinterDnD.Tk
+    tkinterdnd2_imported = True
+except ImportError:
+    root_class = tk.Tk
+    tkinterdnd2_imported = False
+
 
 class EntryWithText(ttk.Entry):
     def __init__(self, parent, *_, **kwargs):
         value = kwargs['default_value'] if 'default_value' in kwargs else ''
         auto_select_off = kwargs['auto_select_off'] if 'auto_select_off' in kwargs else False
+        dnd = kwargs.get('drag_and_drop', None)
         self._var = var = widgets[STRING_VAR](value=value)
         if 'default_value' in kwargs:
             del kwargs['default_value']
         if 'auto_select_off' in kwargs:
             del kwargs['auto_select_off']
+        if 'drag_and_drop' in kwargs:
+            del kwargs['drag_and_drop']
+
         super(EntryWithText, self).__init__(parent, textvariable=var, **kwargs)
 
         if not auto_select_off:
             self.bind('<FocusIn>', lambda *_: self.selection_range(0, tk.END))
+
+        # Drag and Drop
+        dnd = {}
+        if (dnd is not None) and tkinterdnd2_imported:
+            self.drop_target_register('DND_Files')
+            self.dnd_bind('<<DropEnter>>', dnd.get('drop_enter', lambda e: print(e)))
+            self.dnd_bind('<<DropLeave>>', dnd.get('drop_leave', lambda e: print(e)))
+            self.dnd_bind('<<Drop>>', dnd.get('drop', lambda e: print(e)))
 
     def get_value(self):
         return self._var.get()
@@ -198,7 +219,7 @@ get_clicked_rectangle = canvas_actions.get_clicked_rectangle
 move_item_vertically_within_range = canvas_actions.move_item_vertically_within_range
 
 widgets = {
-    ROOT: tk.Tk,
+    ROOT: root_class,
     FRAME: ttk.Frame,
     BUTTON: ttk.Button,
     CANVAS: widget_canvas,
