@@ -282,6 +282,18 @@ class View(ViewABC):
     def ask_color(title='Choose color') -> str:
         return TkImpl.ask_color(title)[1]
 
+    def bind_upon_drag_and_drop_enter(self, widget_id, callback: Callable):
+        widget = self._widget_dictionary[widget_id]
+        TkImpl.bind_drag_and_drop_enter(widget, callback)
+
+    def bind_upon_drag_and_drop_leave(self, widget_id, callback: Callable):
+        widget = self._widget_dictionary[widget_id]
+        TkImpl.bind_drag_and_drop_leave(widget, callback)
+
+    def bind_upon_drag_and_drop_drop(self, widget_id, callback: Callable):
+        widget = self._widget_dictionary[widget_id]
+        TkImpl.bind_drag_and_drop_drop(widget, callback)
+
     # 4) Tree related methods
     @property
     def current_tree(self):

@@ -314,11 +314,6 @@ def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
         rowspan, columnspan = row2 - row1 + 1, col2 - col1 + 1
         padx, pady = pad_xy or (0, 0)
 
-        # Drag and Drop - 1/2
-        dnd = options.get('drag_and_drop', None)
-        if 'drag_and_drop' in options:
-            del options['drag_and_drop']
-
         if widget_type == FRAME:
             widget = add_frame(options, parent, widget_class)
         elif widget_type == ENTRY:
@@ -348,14 +343,6 @@ def add_widgets(widget_dictionary, view_model: Union[list, tuple]):
                 widget_dictionary[key_scrollable_frames] = [widget_id]
         else:
             widget = widget_class(parent, **options)
-
-        # Drag and Drop - 2/2
-        dnd = {}
-        if (dnd is not None) and tkinterdnd2_imported:
-            widget.drop_target_register('DND_Files')
-            widget.dnd_bind('<<DropEnter>>', dnd.get('drop_enter', lambda e: print(e)))
-            widget.dnd_bind('<<DropLeave>>', dnd.get('drop_leave', lambda e: print(e)))
-            widget.dnd_bind('<<Drop>>', dnd.get('drop', lambda e: print(e)))
 
         widget_dictionary[widget_id] = widget
         widget.grid(row=row1, column=col1, rowspan=rowspan, columnspan=columnspan, sticky=sticky, padx=padx, pady=pady)
@@ -670,3 +657,21 @@ def close(widget):
 
 def change_label_text_color(label: tk.Widget, color):
     label.configure(foreground=color)
+
+
+def bind_drag_and_drop_enter(widget: tk.Widget, callback: Callable):
+    _bind_dnd('<<DropEnter>>', widget, callback)
+
+
+def bind_drag_and_drop_leave(widget: tk.Widget, callback: Callable):
+    _bind_dnd('<<DropLeave>>', widget, callback)
+
+
+def bind_drag_and_drop_drop(widget: tk.Widget, callback: Callable):
+    _bind_dnd('<<Drop>>', widget, callback)
+
+
+def _bind_dnd(key: str, widget: tk.Widget, callback: Callable):
+    if tkinterdnd2_imported:
+        widget.drop_target_register('DND_Files')
+        widget.dnd_bind(key, lambda e: callback(e))
