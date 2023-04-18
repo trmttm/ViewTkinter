@@ -1,5 +1,6 @@
 import os_identifier
 
+none = ''
 shift = 'shift'
 function = 'function'
 control = 'control'
@@ -17,6 +18,11 @@ down = 'Down'
 left = 'Left'
 right = 'Right'
 
+numbers = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',)
+alphabet = (
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
+    'x',
+    'y', 'z')
 if os_identifier.is_mac:
     tk_n_none = 0
     tk_none_special = 96
@@ -128,6 +134,81 @@ modifier_to_elements = {
 
     tk_n_none + tk_n_all: [n_shift, n_function, n_control, n_option, n_command, ],
 }
+
+element_to_str = {
+    n_none: none,
+    n_shift: shift,
+    n_function: function,
+    n_control: control,
+    n_option: option,
+    n_command: command,
+}
+elements_str = tuple(
+    [element_to_str[n_modifier] for n_modifier in modifiers]
+    for modifiers in modifier_to_elements.values()
+)
+modifier_to_elements_str = dict(zip(modifier_to_elements.keys(), elements_str))
+
+control_option_values = (
+    'aring',
+    'integral',
+    'ccedilla',
+    'partialderivative',
+    'acute',
+    'function',
+    'copyright',
+    'abovedot',
+    '??',
+    '??',
+    '??',
+    'notsign',
+    'mu',
+    '??',
+    'oslash',
+    'Greek_pi',
+    'oe',
+    'registered',
+    'ssharp',
+    'dagger',
+    'diaeresis',
+    'radical',
+    '??',
+    '??',
+    'yen',
+    'Greek_OMEGA',
+)
+
+tk_key_interpreter_control_option = dict(zip(control_option_values, alphabet))
+
+shift_control_option_values = (
+    'Aring',
+    'idotless',
+    'Ccedilla',
+    'Icircumflex',
+    'acute',
+    'Idiaeresis',
+    'doubleacute',
+    'Oacute',
+    '??',
+    'Ocircumflex',
+    '??',
+    'Ograve',
+    'Acircumflex',
+    '??',
+    'Oslash',
+    'Greek_pi',
+    'OE',
+    'registered',
+    'Iacute',
+    'caron',
+    'diaeresis',
+    'radical',
+    'doublelowquotemark',
+    'ogonek',
+    'Aacute',
+    'cedilla',
+)
+tk_key_interpreter_shift_control_option = dict(zip(shift_control_option_values, alphabet))
 
 tk_key_interpreter = {
     # General
@@ -349,12 +430,20 @@ def interpret_key(key, keysym, state) -> tuple:
         return '-', 0
     elif keysym == 'equal':
         return '=', 0
-    elif is_windows and keysym in ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'):
+    elif is_windows and keysym in numbers:
         return keysym, 0
     elif is_windows and keysym in ('F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',):
         return keysym, 0
     elif state == n_control:
         return keysym, 0
+    elif keysym in tk_key_interpreter:
+        return tk_key_interpreter[keysym]
+    elif keysym in alphabet:
+        return keysym, 0
+    elif state in (20, 28) and keysym in control_option_values:
+        return tk_key_interpreter_control_option[keysym], 0
+    elif state in (21, 29) and keysym in tk_key_interpreter_shift_control_option:
+        return tk_key_interpreter_shift_control_option[keysym], 0
     else:
         return tk_key_interpreter[key] if key in tk_key_interpreter else (key, 0)
 
