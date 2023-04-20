@@ -393,6 +393,12 @@ class View(ViewABC):
     def select_open_file(self, initialdir=None):
         return TkImpl.ask_open_file(initialdir)
 
+    # NoteBook
+
+    def select_note_book_tab(self, widget_id, tab_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.select_note_book_tab(widget, tab_id)
+
     # User Input
     def ask_yes_no(self, title, message) -> bool:
         return TkImpl.ask_yes_no(title, message)

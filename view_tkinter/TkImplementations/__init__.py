@@ -418,6 +418,10 @@ def add_notebook(options: dict, parent, widget_dictionary: dict) -> ttk.Notebook
     return notebook
 
 
+def select_note_book_tab(widget: ttk.Notebook, tab_id):
+    widget.select(tab_id)
+
+
 def add_radio_button(options: dict, parent, widget_dictionary: dict) -> ttk.Frame:
     int_var = widgets[INT_VAR]()
     int_var_id = options['int_var_id']
