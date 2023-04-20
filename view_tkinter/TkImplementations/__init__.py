@@ -568,6 +568,8 @@ def get_widget_value(widget):
         return w.get_value()
     elif widget_type == widgets[TEXTBOX]:
         return widget.get("1.0", tk.END)
+    elif widget_type == widgets[LABEL]:
+        return widget['text']
     else:
         try:
             return widget.get()
