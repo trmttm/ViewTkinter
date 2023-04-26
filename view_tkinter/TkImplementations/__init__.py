@@ -103,9 +103,7 @@ class ScrollableFrame(ttk.Frame):
 
         self.scrollable_frame.bind(
             "<Configure>",
-            lambda e: canvas.configure(
-                scrollregion=canvas.bbox("all")
-            )
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
         )
         self.scrollable_frame.grid_rowconfigure(0, weight=1)
         self.scrollable_frame.grid_columnconfigure(0, weight=1)
@@ -380,13 +378,14 @@ def add_paned_window(options: dict, parent, widget_class: Type[ttk.Panedwindow],
     weights = options['weights'] if 'weights' in options else tuple(None for _ in frame_ids)
 
     frame_options = options.get('frame_options', None)
+    scrollables = options.get('scrollable_frame', tuple(False for _ in frame_ids))
 
     orient = tk.VERTICAL if is_vertical else tk.HORIZONTAL
     paned_window = widget_class(parent, orient=orient)
-    for n, (frame_id, weight) in enumerate(zip(frame_ids, weights)):
-        frame = widgets[FRAME](paned_window, style='a.TFrame')
+    for n, (frame_id, weight, scrollable) in enumerate(zip(frame_ids, weights, scrollables)):
+        frame = widgets[SCROLLABLE_FRAME if scrollable else FRAME](paned_window, style='a.TFrame')
         configure_frame_row_col_options(frame, frame_options, n)
-        widget_dictionary[frame_id] = frame
+        widget_dictionary[frame_id] = frame.scrollable_frame if scrollable else frame
         paned_window.add(frame, weight=weight)
     return paned_window
 
@@ -411,17 +410,14 @@ def add_notebook(options: dict, parent, widget_dictionary: dict) -> ttk.Notebook
     notebook = widgets[NOTEBOOK](parent)
 
     frame_options = options.get('frame_options', None)
+    scrollables = options.get('scrollable_frame', tuple(False for _ in frame_ids))
 
-    for n, (frame_id, frame_name) in enumerate(zip(frame_ids, frame_names)):
-        frame = widgets[FRAME](notebook)
+    for n, (frame_id, frame_name, scrollable) in enumerate(zip(frame_ids, frame_names, scrollables)):
+        frame = widgets[SCROLLABLE_FRAME if scrollable else FRAME](notebook)
         configure_frame_row_col_options(frame, frame_options, n)
         notebook.add(frame, text=frame_name)
-        widget_dictionary[frame_id] = frame
+        widget_dictionary[frame_id] = frame.scrollable_frame if scrollable else frame
     return notebook
-
-
-def select_note_book_tab(widget: ttk.Notebook, tab_id):
-    widget.select(tab_id)
 
 
 def add_radio_button(options: dict, parent, widget_dictionary: dict) -> ttk.Frame:
@@ -665,6 +661,11 @@ def close(widget):
 
 def change_label_text_color(label: tk.Widget, color):
     label.configure(foreground=color)
+
+
+def change_label_image(label: tk.Widget, image):
+    label.configure(image=image)
+    label.image = image
 
 
 def bind_drag_and_drop_enter(widget: tk.Widget, callback: Callable):
