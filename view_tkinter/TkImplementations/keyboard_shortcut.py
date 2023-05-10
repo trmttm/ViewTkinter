@@ -32,7 +32,8 @@ if os_identifier.is_mac:
     tk_n_option = 16
     tk_n_command = 8
 else:
-    tk_n_none = 8
+    # tk_n_none = 8 # for old windows?
+    tk_n_none = 0
     tk_none_special = 262144
     tk_n_shift = 1
     tk_n_function = 64
