@@ -7,11 +7,10 @@ from typing import Callable
 from typing import Tuple
 from typing import Type
 from typing import Union
-# test pip install -e synchronization
 from . import canvas_actions
 from . import keyboard_shortcut
 from . import tree_actions
-
+# will this comment commit?
 try:
     import tkinterdnd2 as tkdnd
 
