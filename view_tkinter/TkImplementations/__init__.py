@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import colorchooser
 from tkinter import filedialog
+from tkinter import font
 from tkinter import ttk
 from tkinter.messagebox import askyesno
 from typing import Callable
@@ -667,6 +668,13 @@ def close(widget):
 
 def change_label_text_color(label: tk.Widget, color):
     label.configure(foreground=color)
+
+
+def change_label_font_size(label: tk.Widget, size: int, font_name: str = 'Helvetica bold'):
+    if size is not None:
+        label.config(font=(font_name, 26))
+    else:
+        label.config(font=font.nametofont('TkTextFont').actual())
 
 
 def change_label_image(label: tk.Widget, image):
