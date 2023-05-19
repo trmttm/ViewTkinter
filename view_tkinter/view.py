@@ -393,9 +393,9 @@ class View(ViewABC):
         label = self.get_widget(label_id)
         TkImpl.change_label_text_color(label, color)
 
-    def change_label_font_size(self, label_id, size: int, font_name: str = 'Helvetica bold'):
+    def change_label_font_size(self, label_id, size: int, font_name: str = 'Helvetica bold', overstrike=False):
         label = self.get_widget(label_id)
-        TkImpl.change_label_font_size(label, size, font_name)
+        TkImpl.change_label_font_size(label, size, font_name, overstrike)
 
     # Disk IO
     def select_folder(self, initialdir=None):

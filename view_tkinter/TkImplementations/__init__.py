@@ -670,11 +670,16 @@ def change_label_text_color(label: tk.Widget, color):
     label.configure(foreground=color)
 
 
-def change_label_font_size(label: tk.Widget, size: int, font_name: str = 'Helvetica bold'):
+def change_label_font_size(label: tk.Widget, size: int, font_name: str = 'Helvetica bold', overstrike=False):
     if size is not None:
-        label.config(font=(font_name, 26))
+        f = (font_name, size)
     else:
-        label.config(font=font.nametofont('TkTextFont').actual())
+        fd = font.nametofont('TkTextFont').actual()
+        f = (fd['slant'], fd['size'])
+
+    if overstrike:
+        f += ('overstrike',)
+    label.config(font=f)
 
 
 def change_label_image(label: tk.Widget, image):
