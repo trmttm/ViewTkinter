@@ -281,6 +281,7 @@ def callback_keyboard(event, command):
     state = event.state
     char = event.char
     keysym = event.keysym
+    print(f'Typed... state:{state}, char:{char}, keysym:{keysym}')
 
     state = k.tk_interpret_state(state)
     key, adjustment = k.interpret_key(char, keysym, state)

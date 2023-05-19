@@ -32,8 +32,8 @@ if os_identifier.is_mac:
     tk_n_option = 16
     tk_n_command = 8
 else:
-    # tk_n_none = 8 # for old windows?
-    tk_n_none = 0
+    tk_n_none = 8  # for old windows? this was the case for (old private Windows and Windows from Miyota)
+    # tk_n_none = 0 # this was the case for ITOCHU PC
     tk_none_special = 262144
     tk_n_shift = 1
     tk_n_function = 64
