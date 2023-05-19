@@ -159,6 +159,7 @@ bind_tree_left_click_release = tree_actions.bind_tree_left_click_release
 bind_tree_right_click_release = tree_actions.bind_tree_right_click_release
 bind_tree_middle_click_release = tree_actions.bind_tree_middle_click_release
 bind_tree_enter = tree_actions.bind_tree_enter
+bind_tree_leave = tree_actions.bind_tree_leave
 add_treeview = tree_actions.add_treeview
 update_tree = tree_actions.update_tree
 set_tree_headings = tree_actions.set_tree_headings

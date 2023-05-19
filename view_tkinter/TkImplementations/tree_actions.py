@@ -193,6 +193,10 @@ def bind_tree_enter(command: Callable, tree: ttk.Treeview):
     tree.bind(f'<Enter>', lambda e: command())
 
 
+def bind_tree_leave(command: Callable, tree: ttk.Treeview):
+    tree.bind(f'<Leave>', lambda e: command())
+
+
 def _bind_tree_click(n: int, tree: ttk.Treeview, command: Callable):
     tree.bind(f'<Button-{n}>', lambda e: command(get_value_from_tree_click_event(tree, e)))
 
