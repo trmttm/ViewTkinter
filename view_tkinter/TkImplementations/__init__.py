@@ -13,7 +13,6 @@ from . import canvas_actions
 from . import keyboard_shortcut
 from . import tree_actions
 
-# will this comment commit? -> Yes!
 try:
     import tkinterdnd2 as tkdnd
 
@@ -286,6 +285,7 @@ def callback_keyboard(event, command):
     state = k.tk_interpret_state(state)
     key, adjustment = k.interpret_key(char, keysym, state)
     modifier = k.tk_state_adjustment(char, state, adjustment, keysym)
+    print(f'Modifier:{modifier}, Key:{key}')
     command(modifier, key)
 
 

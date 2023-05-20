@@ -1,5 +1,7 @@
 import os_identifier
 
+is_machida_windows = True
+
 none = ''
 shift = 'shift'
 function = 'function'
@@ -398,10 +400,22 @@ keys_that_require_adjustments = (
 state_that_require_adjustments = (0,)
 keysym_that_require_adjustments = ('KP_Enter', delete, up, down, left, right)
 
+windows_machida_exception = {
+    'Shift_L': tk_n_none + tk_n_shift,
+    'Shift_R': tk_n_none + tk_n_shift,
+    'Control_L': tk_n_none + tk_n_control,
+    'Control_R': tk_n_none + tk_n_control,
+    'Alt_L': tk_n_none + tk_n_option,
+    'Alt_R': tk_n_none + tk_n_option,
+}
+
 
 def tk_interpret_state(environment_dependent_state) -> int:
-    state = environment_dependent_state
-    return tk_modifier_interpreter[state] if state in tk_modifier_interpreter else state
+    if is_machida_windows:
+        return environment_dependent_state
+    else:
+        state = environment_dependent_state
+        return tk_modifier_interpreter[state] if state in tk_modifier_interpreter else state
 
 
 def interpret_key(key, keysym, state) -> tuple:
@@ -437,6 +451,11 @@ def interpret_key(key, keysym, state) -> tuple:
         return keysym, 0
     elif is_windows and keysym in ('F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',):
         return keysym, 0
+    elif is_machida_windows and (keysym in windows_machida_exception):  # must be before "keysym in tk_key_interpreter"
+        return keysym, windows_machida_exception[keysym]
+    elif is_machida_windows and (key in tk_key_interpreter):
+        key, adjustment = tk_key_interpreter[key]
+        return keysym, adjustment + tk_n_none
     elif state == n_control:
         return keysym, 0
     elif keysym in tk_key_interpreter:
