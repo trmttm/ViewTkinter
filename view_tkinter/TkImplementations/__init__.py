@@ -11,8 +11,8 @@ from typing import Union
 
 from . import canvas_actions
 from . import keyboard_shortcut
-from . import tree_actions
 from . import mouse
+from . import tree_actions
 
 try:
     import tkinterdnd2 as tkdnd

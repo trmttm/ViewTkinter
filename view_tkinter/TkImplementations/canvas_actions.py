@@ -1,12 +1,12 @@
 import tkinter as tk
 import tkinter.font as tkFont
-from _tkinter import TclError
 from tkinter import ttk
 from typing import Callable
 from typing import List
 from typing import Type
 
 import os_identifier
+from _tkinter import TclError
 
 widget_canvas = tk.Canvas
 widget_scroll_bar = ttk.Scrollbar

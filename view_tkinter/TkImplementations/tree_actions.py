@@ -6,6 +6,7 @@ from typing import Tuple
 from typing import Type
 
 import os_identifier
+
 from . import mouse
 
 widget_tree_view = ttk.Treeview
