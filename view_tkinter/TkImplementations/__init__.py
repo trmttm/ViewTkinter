@@ -9,11 +9,10 @@ from typing import Tuple
 from typing import Type
 from typing import Union
 
-import os_identifier
-
 from . import canvas_actions
 from . import keyboard_shortcut
 from . import tree_actions
+from . import mouse
 
 try:
     import tkinterdnd2 as tkdnd
@@ -296,27 +295,27 @@ def bind_keyboard_shortcut(widget: Union[tk.Tk, tk.Toplevel], command: Callable)
 
 
 def bind_left_click(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
-    _bind_click(1, widget, command)
+    _bind_click(mouse.LEFT_CLICK, widget, command)
 
 
 def bind_right_click(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
-    _bind_click(2, widget, command)
+    _bind_click(mouse.RIGHT_CLICK, widget, command)
 
 
 def bind_middle_click(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
-    _bind_click(3, widget, command)
+    _bind_click(mouse.MIDDLE_CLICK, widget, command)
 
 
 def bind_left_click_release(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
-    _bind_click_release(1, widget, command)
+    _bind_click_release(mouse.LEFT_CLICK, widget, command)
 
 
 def bind_right_click_release(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
-    _bind_click_release(2 if os_identifier.is_mac else 3, widget, command)
+    _bind_click_release(mouse.RIGHT_CLICK, widget, command)
 
 
 def bind_middle_click_release(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
-    _bind_click_release(3 if os_identifier.is_mac else 2, widget, command)
+    _bind_click_release(mouse.MIDDLE_CLICK, widget, command)
 
 
 def _bind_click(n: int, widget: Union[tk.Widget, ttk.Widget], command: Callable):
@@ -329,7 +328,7 @@ def _bind_click_release(n: int, widget: Union[tk.Widget, ttk.Widget], command: C
         widget.bind(f'<ButtonRelease-{n}>', lambda e: command(e))
 
 
-def get_focused_widget(root: tk.Tk) -> str:
+def get_focused_widget(root: tk.Tk):
     return root.focus_get()
 
 

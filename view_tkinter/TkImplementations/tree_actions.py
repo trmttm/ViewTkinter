@@ -6,6 +6,7 @@ from typing import Tuple
 from typing import Type
 
 import os_identifier
+from . import mouse
 
 widget_tree_view = ttk.Treeview
 
@@ -166,27 +167,27 @@ def unbind_tree(tree: ttk.Treeview):
 
 
 def bind_tree_left_click(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click(1, tree, command)
+    _bind_tree_click(mouse.LEFT_CLICK, tree, command)
 
 
 def bind_tree_right_click(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click(2 if os_identifier.is_mac else 3, tree, command)
+    _bind_tree_click(mouse.RIGHT_CLICK, tree, command)
 
 
 def bind_tree_middle_click(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click(3 if os_identifier.is_mac else 2, tree, command)
+    _bind_tree_click(mouse.MIDDLE_CLICK, tree, command)
 
 
 def bind_tree_left_click_release(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click_release(1, tree, command)
+    _bind_tree_click_release(mouse.LEFT_CLICK, tree, command)
 
 
 def bind_tree_right_click_release(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click_release(2, tree, command)
+    _bind_tree_click_release(mouse.RIGHT_CLICK, tree, command)
 
 
 def bind_tree_middle_click_release(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click_release(3, tree, command)
+    _bind_tree_click_release(mouse.MIDDLE_CLICK, tree, command)
 
 
 def bind_tree_enter(command: Callable, tree: ttk.Treeview):
