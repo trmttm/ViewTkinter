@@ -170,11 +170,11 @@ def bind_tree_left_click(command: Callable, tree: ttk.Treeview):
 
 
 def bind_tree_right_click(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click(2, tree, command)
+    _bind_tree_click(2 if os_identifier.is_mac else 3, tree, command)
 
 
 def bind_tree_middle_click(command: Callable, tree: ttk.Treeview):
-    _bind_tree_click(3, tree, command)
+    _bind_tree_click(3 if os_identifier.is_mac else 2, tree, command)
 
 
 def bind_tree_left_click_release(command: Callable, tree: ttk.Treeview):

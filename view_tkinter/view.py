@@ -231,6 +231,30 @@ class View(ViewABC):
         widget = self.get_widget(widget_id)
         TkImpl.bind_widget_entry(command, widget)
 
+    def bind_left_click(self, command: Callable, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_left_click(command, widget)
+
+    def bind_right_click(self, command: Callable, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_right_click(command, widget)
+
+    def bind_middle_click(self, command: Callable, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_middle_click(command, widget)
+
+    def bind_left_click_release(self, command: Callable, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_left_click_release(command, widget)
+
+    def bind_right_click_release(self, command: Callable, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_right_click_release(command, widget)
+
+    def bind_middle_click_release(self, command: Callable, widget_id):
+        widget = self.get_widget(widget_id)
+        TkImpl.bind_middle_click_release(command, widget)
+
     def bind_command_to_widget(self, widget_id, command):
         widget = self.get_widget(widget_id)
         TkImpl.bind_command_to_widget(command, widget)

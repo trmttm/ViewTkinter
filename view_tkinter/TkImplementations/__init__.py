@@ -9,6 +9,8 @@ from typing import Tuple
 from typing import Type
 from typing import Union
 
+import os_identifier
+
 from . import canvas_actions
 from . import keyboard_shortcut
 from . import tree_actions
@@ -291,6 +293,40 @@ def callback_keyboard(event, command):
 
 def bind_keyboard_shortcut(widget: Union[tk.Tk, tk.Toplevel], command: Callable):
     widget.bind('<Key>', lambda e: callback_keyboard(e, command))
+
+
+def bind_left_click(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
+    _bind_click(1, widget, command)
+
+
+def bind_right_click(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
+    _bind_click(2, widget, command)
+
+
+def bind_middle_click(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
+    _bind_click(3, widget, command)
+
+
+def bind_left_click_release(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
+    _bind_click_release(1, widget, command)
+
+
+def bind_right_click_release(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
+    _bind_click_release(2 if os_identifier.is_mac else 3, widget, command)
+
+
+def bind_middle_click_release(command: Callable, widget: Union[tk.Widget, ttk.Widget]):
+    _bind_click_release(3 if os_identifier.is_mac else 2, widget, command)
+
+
+def _bind_click(n: int, widget: Union[tk.Widget, ttk.Widget], command: Callable):
+    if widget is not None:
+        widget.bind(f'<Button-{n}>', lambda e: command(e))
+
+
+def _bind_click_release(n: int, widget: Union[tk.Widget, ttk.Widget], command: Callable):
+    if widget is not None:
+        widget.bind(f'<ButtonRelease-{n}>', lambda e: command(e))
 
 
 def get_focused_widget(root: tk.Tk) -> str:
@@ -667,11 +703,11 @@ def close(widget):
     widget.destroy()
 
 
-def change_label_text_color(label: tk.Widget, color):
+def change_label_text_color(label: tk.Label, color):
     label.configure(foreground=color)
 
 
-def change_label_font_size(label: tk.Widget, size: int, font_name: str = 'Helvetica bold', overstrike=False):
+def change_label_font_size(label: tk.Label, size: int, font_name: str = 'Helvetica bold', overstrike=False):
     if size is not None:
         f = (font_name, size)
     else:
@@ -683,7 +719,7 @@ def change_label_font_size(label: tk.Widget, size: int, font_name: str = 'Helvet
     label.config(font=f)
 
 
-def change_label_image(label: tk.Widget, image):
+def change_label_image(label: tk.Label, image):
     label.configure(image=image)
     label.image = image
 
@@ -700,7 +736,7 @@ def bind_drag_and_drop_drop(widget: tk.Widget, callback: Callable):
     _bind_dnd('<<Drop>>', widget, callback)
 
 
-def _bind_dnd(key: str, widget: tk.Widget, callback: Callable):
+def _bind_dnd(key: str, widget, callback: Callable):
     if tkinterdnd2_imported:
         widget.drop_target_register('DND_Files')
         widget.dnd_bind(key, lambda e: callback(e))
