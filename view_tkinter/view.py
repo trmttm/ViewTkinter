@@ -421,6 +421,17 @@ class View(ViewABC):
         label = self.get_widget(label_id)
         TkImpl.change_label_font_size(label, size, font_name, overstrike)
 
+    # Entry
+    def highlight_entry(self, widget_id: str):
+        widget = self.get_widget(widget_id)
+        if widget is not None:
+            TkImpl.highlight_entry(widget)
+
+    def remove_highlight_entry(self, widget_id: str):
+        widget = self.get_widget(widget_id)
+        if widget is not None:
+            TkImpl.remove_ighlight_entry(widget)
+
     # Disk IO
     def select_folder(self, initialdir=None):
         return TkImpl.select_folder(initialdir)

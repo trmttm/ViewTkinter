@@ -51,6 +51,12 @@ class EntryWithText(ttk.Entry):
     def bind_update(self, command):
         self._var.trace('w', command)
 
+    def highlight(self):
+        self.configure(style='Highlight.TEntry')
+
+    def remove_highlight(self):
+        self.configure(style='TEntry')
+
 
 class CheckbuttonWithBool(ttk.Checkbutton):
     def __init__(self, parent, *_, **kwargs):
@@ -238,6 +244,7 @@ def define_styles():
     # style.theme_use(style.theme_names()[4])
     style.configure('a.TFrame', )
     style.configure('a.TButton', foreground='blue')
+    style.configure('Highlight.TEntry', background='yellow')
 
     row_height = None
     tree_style_options = {'background': "white", 'foreground': "black", 'fieldbackground': "white"}
@@ -739,3 +746,11 @@ def _bind_dnd(key: str, widget, callback: Callable):
     if tkinterdnd2_imported:
         widget.drop_target_register('DND_Files')
         widget.dnd_bind(key, lambda e: callback(e))
+
+
+def highlight_entry(widget: EntryWithText):
+    widget.highlight()
+
+
+def remove_ighlight_entry(widget: EntryWithText):
+    widget.remove_highlight()
