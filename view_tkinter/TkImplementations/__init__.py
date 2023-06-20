@@ -258,8 +258,7 @@ def define_styles():
 
 # ★バグ対応用の関数を追加
 def fixed_map(option, style):
-    return [elm for elm in style.map('Treeview', query_opt=option) if
-            elm[:2] != ('!disabled', '!selected')]
+    return [elm for elm in style.map('Treeview', query_opt=option) if elm[:2] != ('!disabled', '!selected')]
 
 
 def instantiate_root(width: int = None, height: int = None, fullscreen=False) -> tk.Tk:
