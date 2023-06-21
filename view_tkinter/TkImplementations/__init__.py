@@ -9,6 +9,8 @@ from typing import Tuple
 from typing import Type
 from typing import Union
 
+import os_identifier
+
 from . import canvas_actions
 from . import keyboard_shortcut
 from . import mouse
@@ -244,7 +246,12 @@ def define_styles():
     # style.theme_use(style.theme_names()[4])
     style.configure('a.TFrame', )
     style.configure('a.TButton', foreground='blue')
-    style.configure('Highlight.TEntry', background='yellow')
+
+    if os_identifier.is_windows:  # This enables highlighting entry background.
+        style.theme_use('clam')
+        style.configure('Highlight.TEntry', fieldbackground='yellow')
+    else:
+        style.configure('Highlight.TEntry', background='yellow')
 
     row_height = None
     tree_style_options = {'background': "white", 'foreground': "black", 'fieldbackground': "white"}
