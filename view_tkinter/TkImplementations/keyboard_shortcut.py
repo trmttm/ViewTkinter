@@ -455,7 +455,7 @@ def interpret_key(key, keysym, state) -> tuple:
         return keysym, windows_machida_exception[keysym]
     elif is_machida_windows and (key in tk_key_interpreter):
         key, adjustment = tk_key_interpreter[key]
-        return keysym, adjustment + tk_n_none
+        return key, adjustment + tk_n_none
     elif state == n_control:
         return keysym, 0
     elif keysym in tk_key_interpreter:
