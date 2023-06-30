@@ -22,6 +22,9 @@ class View(ViewABC):
 
         self._view_state = {}
 
+    def change_style(self):
+        TkImpl.change_style(self._root.style)
+
     def attach_to_event_upon_closing(self, observer):
         self._root.protocol("WM_DELETE_WINDOW", observer)
 

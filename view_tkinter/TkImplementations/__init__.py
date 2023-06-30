@@ -241,6 +241,17 @@ widgets = {
 }
 
 
+def change_style(style: ttk.Style):
+    all_themes = style.theme_names()
+    current_theme = style.theme_use()
+    current_theme_index = all_themes.index(current_theme)
+    next_index = current_theme_index + 1
+    if next_index == len(all_themes):
+        next_index = 0
+    selected_theme = all_themes[next_index]
+    style.theme_use(selected_theme)
+
+
 def define_styles():
     style = ttk.Style()
     # style.theme_use(style.theme_names()[4])
@@ -261,6 +272,7 @@ def define_styles():
 
     # ★バグ対応を処理
     style.map('Treeview', foreground=fixed_map('foreground', style), background=fixed_map('background', style))
+    return style
 
 
 # ★バグ対応用の関数を追加
@@ -285,7 +297,7 @@ def instantiate_root(width: int = None, height: int = None, fullscreen=False) ->
         root.geometry(f'{width}x{height}')
     root.grid_rowconfigure(0, weight=1)
     root.grid_columnconfigure(0, weight=1)
-    define_styles()
+    root.style = define_styles()
     return root
 
 
