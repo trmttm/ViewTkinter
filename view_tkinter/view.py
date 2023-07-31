@@ -258,6 +258,10 @@ class View(ViewABC):
         widget = self.get_widget(widget_id)
         TkImpl.bind_middle_click_release(command, widget)
 
+    def bind_tree_click_heading(self, tree_id, callback):
+        widget = self.get_widget(tree_id)
+        TkImpl.bind_tree_click_heading(widget, callback)
+
     def bind_command_to_widget(self, widget_id, command):
         widget = self.get_widget(widget_id)
         TkImpl.bind_command_to_widget(command, widget)

@@ -160,6 +160,7 @@ SCROLLABLE_FRAME = 'scrollable_frame'
 widget_tree_view = tree_actions.widget_tree_view
 get_tree_selection_values = tree_actions.get_tree_values
 bind_tree = tree_actions.bind_tree
+bind_tree_click_heading = tree_actions.bind_tree_click_heading
 unbind_tree = tree_actions.unbind_tree
 bind_tree_left_click = tree_actions.bind_tree_left_click
 bind_tree_right_click = tree_actions.bind_tree_right_click

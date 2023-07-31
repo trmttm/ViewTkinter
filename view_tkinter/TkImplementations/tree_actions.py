@@ -159,6 +159,18 @@ def get_tree_focused_id(tree: ttk.Treeview):
     return id_
 
 
+def invoke_heading_click(e: tk.Event, tree: ttk.Treeview, callback):
+    region = tree.identify("region", e.x, e.y)
+    if region == "heading":
+        n_col_str = tree.identify_column(e.x)
+        n_col = int(n_col_str.replace('#', ''))
+        callback(n_col)
+
+
+def bind_tree_click_heading(tree: ttk.Treeview, callback):
+    tree.bind("<Button-1>", lambda e: invoke_heading_click(e, tree, callback))
+
+
 def bind_tree(command: Callable, tree: ttk.Treeview):
     tree.bind('<<TreeviewSelect>>', lambda e: command())
 
